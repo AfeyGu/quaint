@@ -46,7 +46,7 @@
 
 
 	
-(defun align-text (/ A B)
+(defun align-text-angle (/ A B)
 	;;;	Judge witch mode
 	(nil)
 	(defun changebyanlge (/ i)	;;;	Change by anlge
