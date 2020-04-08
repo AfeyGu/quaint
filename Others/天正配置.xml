@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<目录 name="天正软件设置" comment="天正软件设置选项">
+	<目录 name="图形设置" comment="保存于图形内的设置参数、系统变量">
+		<目录 name="基本设定" comment="图形基本参数设定">
+			<目录 name="门窗" comment="门窗相关设置">
+				<选项 name="编号" comment="门窗编号是否大写" options="是 否">否</选项>
+			</目录>
+			<目录 name="楼梯" comment="楼梯设置">
+				<选项 name="剖断样式" options="双剖断 单剖断">双剖断</选项>
+			</目录>
+			<选项 name="当前比例">100</选项>
+			<选项 name="当前层高">3000</选项>
+			<选项 name="房间面积标注小数位数设置">2</选项>
+			<选项 name="文字距离基线系数">0.3</选项>
+			<选项 name="显示模式" comment="图形当前显示模式" options="2D 3D AUTO">AUTO</选项>
+			<选项 name="绘图单位" options="mm M">mm</选项>
+			<选项 name="标注单位" comment="只对尺寸、坐标标注有效" options="mm M">mm</选项>
+			<选项 name="索引图名中文字大小的控制比例">0.6</选项>
+			<选项 name="圆圈文字显示样式" comment="圆圈文字显示样式" options="不出圈文字 旧圆圈文字 可出圈文字">不出圈文字</选项>
+			<选项 name="阳台按一半面积计算" options="是 否">是</选项>
+			<选项 name="三角形标高符号高度">3</选项>
+			<选项 name="标高符号十字线长">2.5</选项>
+			<选项 name="圆点标高符号直径">1.5</选项>
+			<选项 name="引出文字距基线末端距离">0.3</选项>
+			<选项 name="凸窗挡板和门窗套是否有保温" options="是 否">是</选项>
+			<选项 name="弧长标注" options="旧标准 新标准">旧标准</选项>
+		</目录>
+		<目录 name="墙柱加粗填充" comment="墙、柱对象加粗填充设置">
+			<选项 name="加粗" comment="是否启动加粗" options="是 否">否</选项>
+			<选项 name="填充" comment="是否启动填充" options="是 否">否</选项>
+			<选项 name="详图比例" comment="当比例小于此比例时启用详图模式">100</选项>
+			<目录 name="墙柱材料" comment="根据墙、柱材料设置加粗填充">
+				<目录 name="石膏板">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式"></选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.20</选项>
+					<选项 name="详图线宽">0.25</选项>
+				</目录>
+				<目录 name="填充墙">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式"></选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="加气块">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式"></选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="空心砖">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式"></选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="砖墙柱">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式">普通砖</选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="石墙柱">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式">天然石材</选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="钢筋混凝土">
+					<选项 name="标准填充样式">SOLID</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式">钢筋混凝土</选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+				<目录 name="钢柱">
+					<选项 name="标准填充样式"></选项>
+					<选项 name="标准填充色">256</选项>
+					<选项 name="详图填充方式" options="普通填充 线图案填充">普通填充</选项>
+					<选项 name="详图填充样式">金属</选项>
+					<选项 name="填充颜色">256</选项>
+					<选项 name="标准线宽">0.40</选项>
+					<选项 name="详图线宽">0.50</选项>
+				</目录>
+			</目录>
+		</目录>
+	</目录>
+	<目录 name="高级选项" comment="全局参数设置">
+		<目录 name="尺寸标注" comment="尺寸标注全局参数">
+			<目录 name="角度圆弧尺寸" comment="">
+				<选项 name="弧长标注" comment="控制弧长标注的尺寸界线是指向圆心还是垂直于该圆弧的弦" options="新标准 旧标准">旧标准</选项>
+				<目录 name="默认尺寸样式名" comment="">
+					<选项 name="箭头" comment="角度标注时箭头为箭头">_TCH_ARROW</选项>
+					<选项 name="圆点" comment="角度标注时箭头为圆点">_TCH_DOTE</选项>
+				</目录>
+				<选项 name="样式" comment="" options="标准箭头 圆点">标准箭头</选项>
+			</目录>
+			<选项 name="墙厚标注时标注保温厚" comment="设置墙厚标注时是否标注保温厚" options="是 否">否</选项>
+			<选项 name="是否启用尺寸联动" comment="设置尺寸联动默认状态" options="是 否">是</选项>
+			<目录 name="直线尺寸" comment="">
+				<目录 name="默认尺寸样式名" comment="以下尺寸样式在具体图形中的选用在选项命令的“天正初始设置”中设置">
+					<选项 name="粗斜线(M-M)" comment="以米为单位绘图，以米为单位标注尺寸，箭头为粗斜线">_TCH_ARCH_M_M</选项>
+					<选项 name="粗斜线(mm-M)" comment="以毫米为单位绘图，以米为单位标注尺寸，箭头为粗斜线">_TCH_ARCH_mm_M</选项>
+					<选项 name="粗斜线(mm-mm)" comment="以毫米为单位绘图，以毫米为单位标注尺寸，箭头为粗斜线">_TCH_ARCH</选项>
+					<选项 name="细斜线(M-M)" comment="以米为单位绘图，以米为单位标注尺寸，箭头为细斜线">_TCH_ARCH1_M_M</选项>
+					<选项 name="细斜线(mm-M)" comment="以毫米为单位绘图，以米为单位标注尺寸，箭头为细斜线">_TCH_ARCH1_mm_M</选项>
+					<选项 name="细斜线(mm-mm)" comment="以毫米为单位绘图，以毫米为单位标注尺寸，箭头为细斜线">_TCH_ARCH1</选项>
+					<选项 name="圆点(M-M)" comment="以米为单位绘图，以米为单位标注尺寸，箭头为圆点">_TCH_DOTE_M_M</选项>
+					<选项 name="圆点(mm-M)" comment="以毫米为单位绘图，以米为单位标注尺寸，箭头为圆点">_TCH_DOTE_mm_M</选项>
+					<选项 name="圆点(mm-mm)" comment="以毫米为单位绘图，以毫米为单位标注尺寸，箭头为圆点">_TCH_DOTE</选项>
+				</目录>
+				<选项 name="样式" comment="" options="粗线 细线 圆点">粗线</选项>
+			</目录>
+		</目录>
+		<目录 name="符号标注" comment="符号标注全局参数">
+			<目录 name="标高标注" comment="">
+				<选项 name="空白标高符号默认文字基线长度" comment="供手工填写标高时绘制的空白标高符号基线长">16</选项>
+				<选项 name="三角高度" comment="标高符号三角高度(mm)">3</选项>
+				<选项 name="十字线长" comment="标高符号十字线长(mm)">2.5</选项>
+				<选项 name="圆点直径" comment="标高符号圆点直径(mm)">1.5</选项>
+				<选项 name="注释在右侧" comment="选择“否”，当标高标注方向在左侧时，注释写到标高值左侧" options="是 否">是</选项>
+			</目录>
+			<目录 name="带折断切割线" comment="切割线用于定义切割建筑对象的范围，同时可以绘制折断线">
+				<选项 name="不打印边颜色号" comment="改变切割线不打印边（无折断边）的显示颜色">149</选项>
+			</目录>
+			<目录 name="断面、剖面剖切符号" comment="">
+				<选项 name="剖切位置线默认长度" comment="剖切位置线默认长度(mm)">10</选项>
+				<选项 name="剖视方向线默认长度" comment="剖视方向线默认长度(mm)">6</选项>
+			</目录>
+			<选项 name="符号文字导出图层" comment="图形转为低版本格式后，符号文字所在图层" options="随对象图层 随文字图层">随文字图层</选项>
+			<选项 name="符号文字颜色" comment="设置符号文字的默认颜色">7</选项>
+			<目录 name="索引符号" comment="">
+				<选项 name="号圈直径" comment="索引符号号圈直径(mm)">10</选项>
+				<选项 name="剖切索引默认剖切线长度" comment="剖切索引默认剖切线长度(mm)">5</选项>
+				<选项 name="剖切索引默认剖切线宽度" comment="剖切索引默认剖切线宽度(mm)">0.5</选项>
+				<选项 name="剖切索引剖切线默认距引线端头距离" comment="剖切索引的剖切线距引线端头距离默认值(mm)">0</选项>
+				<选项 name="延长线无标注文字时默认长度" comment="索引符号延长线上无标注文字时的默认长度(mm)">5</选项>
+			</目录>
+			<选项 name="索引图名号圈直径" comment="索引图名号圈直径(mm)">14</选项>
+			<选项 name="索引图名圈外文字对齐方式" comment="圈外文字相对于索引圆圈的对齐方式" options="中对齐 下对齐">下对齐</选项>
+			<选项 name="文字距基线默认系数" comment="符号引出线上的注释文字到文字基线的距离系数">0.3</选项>
+			<选项 name="圆圈文字显示样式" comment="1旧圆圈样式，2标注在圈内，3标注可出圈，可作用于轴号" options="1 2 3">2</选项>
+			<选项 name="圆圈文字字高系数" comment="新圆圈文字外接圆直径和圆圈内径的比例系数">0.6</选项>
+			<目录 name="折断线两端出头距离" comment="设置折断线两端伸出连接区间的距离">
+				<选项 name="长度界限值" comment="构件折断线出头距离根据此折断长度界限改变">1000</选项>
+				<选项 name="大于界限值时" comment="大于界限时的出头距离">6</选项>
+				<选项 name="小于界限值时" comment="小于界限时的出头距离">3</选项>
+			</目录>
+			<选项 name="指北针文字方向" comment="控制指北针的文字是沿半径方向指向圆心还是始终保持沿Y轴方向" options="沿半径 沿Y轴">沿Y轴</选项>
+		</目录>
+		<目录 name="立剖面" comment="立面剖面全局参数">
+			<目录 name="建筑立剖面" comment="建筑立面和建筑剖面命令">
+				<选项 name="忽略楼梯扶手和栏杆" comment="在建筑立剖面命令自动生成立剖面时忽略楼梯的自带扶手栏杆" options="是 否">是</选项>
+			</目录>
+		</目录>
+		<目录 name="门窗" comment="门窗全局参数">
+			<目录 name="保温层" comment="">
+				<选项 name="门窗套保温端头封口" comment="设置门窗套保温线在端头是否封口" options="是 否">是</选项>
+				<选项 name="门窗套默认保温厚" comment="门窗套默认保温厚">30</选项>
+				<选项 name="凸窗挡板默认保温厚" comment="凸窗挡板默认保温厚">30</选项>
+				<选项 name="转角凸窗挡板默认保温厚" comment="转角凸窗挡板默认保温厚">30</选项>
+			</目录>
+			<目录 name="编号" comment="">
+				<选项 name="默认后缀" comment="编号后缀命令使用的默认后缀">反</选项>
+				<选项 name="默认字高" comment="默认门窗编号字高">3.5</选项>
+			</目录>
+			<目录 name="带形窗幕墙样式" comment="用三线或四线形式表示带形窗、幕墙、弧窗">
+				<选项 name="比例改变后改变样式" comment="默认是，表示样式随比例改变" options="是 否">是</选项>
+				<选项 name="不改样式时的设定类型" comment="样式不随比例改变时可取三线或者四线" options="三线 四线">三线</选项>
+				<选项 name="改变样式的比例界限" comment="小于这里设定的界限时改变为三线">1:150</选项>
+			</目录>
+		</目录>
+		<目录 name="墙柱" comment="墙体柱子全局参数">
+			<目录 name="保温层" comment="">
+				<选项 name="默认厚度" comment="设置墙体、柱子和墙体造型保温层默认厚度">80</选项>
+				<选项 name="墙体保温端头封口" comment="设置墙体保温线的端头是否封口" options="是 否">否</选项>
+			</目录>
+			<选项 name="墙基线颜色号" comment="设置墙体对象中的基线颜色">46</选项>
+		</目录>
+		<目录 name="室外构件" comment="室外构件全局参数">
+			<目录 name="阳台" comment="">
+				<选项 name="阳台栏板遮挡保温层" comment="阳台栏板遮挡墙柱保温层" options="是 否">否</选项>
+			</目录>
+		</目录>
+		<目录 name="文字" comment="文字全局参数">
+			<选项 name="混排文字导低版本断开" comment="控制中英文混排文字转为天正低版本时是否断开" options="是 否">是</选项>
+		</目录>
+		<目录 name="系统" comment="系统全局参数">
+			<目录 name="精度" comment="">
+				<选项 name="分弧精度" comment="单位mm">4</选项>
+				<选项 name="角度精度" comment="内部参数，用户一般不要修改！">0.001</选项>
+				<选项 name="距离精度" comment="内部参数，用户一般不要修改！">0.01</选项>
+				<选项 name="墙体衔接控制精度" comment="相连墙体之间自动衔接和合并的距离(毫米)，内部参数，用户一般不要修改！">19</选项>
+			</目录>
+			<选项 name="模型空间默认当前比例" comment="模型空间默认当前比例">100</选项>
+			<选项 name="三维对象分解方式" comment="" options="面模型 ACIS实体模型">面模型</选项>
+			<选项 name="是否启用代理对象" comment="启动后保存DWG文件，文件会变大，但在未安装天正软件的机器上也可以显示所保存文件中的天正自定义对象图形" options="是 否">否</选项>
+			<目录 name="线型" comment="">
+				<选项 name="模型空间自动线型比例" comment="模型空间使用的自动线型比例">1000</选项>
+				<选项 name="是否启用自动线型比例" comment="" options="是 否">是</选项>
+				<选项 name="图纸空间自动线型比例" comment="定义视口中使用的图纸空间自动线型比例">10</选项>
+			</目录>
+			<选项 name="最大自动更新规模" comment="越大速度越慢，但墙角处理效果越好。内部参数，用户一般不要修改！">2000</选项>
+		</目录>
+		<目录 name="轴线" comment="轴线轴号全局参数">
+			<目录 name="轴号" comment="">
+				<选项 name="一轴多号忽略附加轴号" comment="一轴多号时，不绘制附加轴号" options="是 否">是</选项>
+				<选项 name="隐藏轴号颜色号" comment="轴号对象编辑中显示被隐藏的轴号时使用的颜色号">108</选项>
+				<选项 name="轴号字高系数" comment="轴号文字外接圆直径和圆圈内径的比例系数">0.7</选项>
+				<选项 name="轴圈直径" comment="轴号圈的直径" options="8 9 10">8</选项>
+				<选项 name="字母数量不够时采用的注脚形式" comment="字母数量不够时采用的注脚形式" options="字母 数字">字母</选项>
+			</目录>
+			<选项 name="轴线出头" comment="轴线超出边界轴线的长度（毫米）">1000</选项>
+		</目录>
+	</目录>
+	<目录 name="自定义" comment="软件界面等用户使用接口设置">
+		<目录 name="屏幕菜单">
+			<选项 name="显示天正屏幕菜单" options="是 否">是</选项>
+			<选项 name="菜单行高">19</选项>
+			<目录 name="菜单风格">
+				<选项 name="设置菜单风格" options="折叠风格 推拉风格">折叠风格</选项>
+				<选项 name="屏幕高度设置" comment="屏幕高度不足时使用滚动条(或使用鼠标中健滚轮)" options="是 否">否</选项>
+				<选项 name="自动展开第一个子菜单目录" options="是 否">否</选项>
+			</目录>
+			<目录 name="背景颜色">
+				<选项 name="第一层">16777215</选项>
+				<选项 name="第二层">15527919</选项>
+				<选项 name="第三层">16711418</选项>
+				<选项 name="第四层">16580607</选项>
+			</目录>
+		</目录>
+		<目录 name="操作配置">
+			<选项 name="启用天正右键快捷菜单" options="是 否">是</选项>
+			<选项 name="空选时右键状态" options="右键 ctrl+右键 慢击右键150">右键</选项>
+			<选项 name="启用放大缩小热键" options="是 否">否</选项>
+			<选项 name="启用选择预览" options="是 否">是</选项>
+			<选项 name="自动恢复十字光标" options="是 否">是</选项>
+			<选项 name="启动时自动加载最近使用的工程环境" options="是 否">否</选项>
+			<选项 name="动态拖动绘制时使用模数" options="是 否">否</选项>
+			<选项 name="墙体">3e+02</选项>
+			<选项 name="门窗">1e+01</选项>
+			<选项 name="虚拟漫游距离步长">1e+03</选项>
+			<选项 name="角度步长">5.00</选项>
+		</目录>
+		<目录 name="基本界面">
+			<目录 name="界面设置">
+				<选项 name="启用文档标签" options="是 否">否</选项>
+			</目录>
+			<目录 name="在位编辑">
+				<选项 name="字体颜色">0</选项>
+				<选项 name="背景颜色">15133163</选项>
+				<选项 name="字体高度">18</选项>
+			</目录>
+		</目录>
+		<选项 name="工具条">天正选项 图层管理 绘制轴网 轴网标注 单轴标注 标准柱 绘制墙体 墙体分段 门窗表 查询面积 面积统计 双跑楼梯 多跑楼梯 双分平行 矩形屋顶 散水 消重图元 专业词库 单元插图 标高标注 做法标注 箭头引注 索引图名 在线帮助</选项>
+		<目录 name="快捷键">
+			<目录 name="普通快捷键">
+				<选项 name="ACAD" cmdname="3DARRAY MIRROR3D 3DWALK 3DORBIT 3DWALK 3DFACE 3DMOVE 3DPOLY 3DROTATE ARC BACTION ADCENTER -ExportToAutoCAD AREA ALIGN 3DALIGN APPLOAD ARRAY -ARRAY ATTDEF -ATTDEF ATTEDIT -ATTEDIT -ATTEDIT BLOCK -BLOCK BCLOSE BEDIT HATCH BOUNDARY -BOUNDARY BREAK BSAVE BVSTATE CIRCLE CAMERA PROPERTIES CHANGE CHAMFER CHECKSTANDARDS COMMANDLINE COLOR COLOR COPY COPY CTABLESTYLE CYLINDER DIMSTYLE DIMALIGNED DIMANGULAR DIMARC DIMJOGGED DIMBASELINE DBCONNECT ADCENTER DIMCENTER ADCENTER DIMCONTINUE DIMDISASSOCIATE DIMDIAMETER DIMEDIT DIST DIVIDE DIMJOGGED DIMLINEAR DONUT DIMORDINATE DIMOVERRIDE DRAWORDER DIMRADIUS DIMREASSOCIATE DRAWINGRECOVERY DSETTINGS DIMSTYLE TEXT DVIEW ERASE DDEDIT ELLIPSE EXTERNALREFERENCES EXTEND QUIT EXPORT EXTRUDE FILLET FILTER FLATSHOT GROUP -GROUP GRADIENT GEOGRAPHICLOCATION DDGRIPS BHATCH -HATCH HATCHEDIT HIDE INSERT -INSERT IMAGEADJUST IMAGEATTACH IMAGECLIP IMAGE -IMAGE IMPORT INTERSECT INTERFERE INSERTOBJ JOIN LINE LAYER -LAYER QLEADER LENGTHEN LIST LWEIGHT -LAYOUT LIST LINETYPE -LINETYPE LINETYPE -LINETYPE LTSCALE LWEIGHT MOVE MATCHPROP MATERIALS MEASURE MIRROR MLINE PROPERTIES MSPACE MARKUP MTEXT MVIEW GEOGRAPHICLOCATION GEOGRAPHICLOCATION OFFSET OPTIONS 3DORBIT OSNAP -OSNAP PAN -PAN PASTESPEC BPARAMETER -PARTIALOPEN PEDIT PLINE POINT POLYGON PROPERTIES PROPERTIESCLOSE PROPERTIES PREVIEW PLOT PSPACE POLYSOLID PUBLISHTOWEB PURGE -PURGE PYRAMID QUICKCALC REDRAW REDRAWALL RENDERCROP REGEN REGENALL RECTANG REGION RENAME -RENAME REVOLVE ROTATE RENDERPRESETS RPREF RENDER RENDERWIN STRETCH SCALE SCRIPT DSETTINGS SECTION SETVAR SHADEMODE SLICE SNAP SOLID SPELL SPLINE SECTIONPLANE SPLINEDIT SHEETSET STYLE STANDARDS SUBTRACT MTEXT -MTEXT TABLET TABLE THICKNESS TILEMODE TOOLBAR TOLERANCE TORUS TOOLPALETTES TRIM TABLESTYLE UCSMAN UNITS -UNITS UNION VIEW -VIEW DDVPOINT VPOINT VSCURRENT VISUALSTYLES -VISUALSTYLES WBLOCK -WBLOCK WEDGE EXPLODE XATTACH XBIND -XBIND XCLIP XLINE XREF -XREF ZOOM DSVIEWER COPY DIMALIGNED DIMANGULAR DIMBASELINE DIMCONTINUE DIMDIAMETER DIMEDIT DIMTEDIT DIMLINEAR DIMORDINATE DIMRADIUS DIMSTYLE DIMOVERRIDE LEADER TILEMODE SAVE OPEN INSERT DBCONNECT DBCONNECT DBCONNECT DBCONNECT DBCONNECT DBCONNECT ATTDEF ATTEXT PROPERTIES COLOR LAYER LINETYPE PROPERTIES OSNAP UCS BLOCK WBLOCK ADCENTER BLOCK BLOCK BOUNDARY ADCENTER ATTEDIT DIMSTYLE INSERT PLOTSTAMP DSETTINGS STYLE UCSMAN UCSMAN UNITS VIEW DIMLINEAR DIMLINEAR DIMLINEAR DONUT TEXT PLOT OPEN SAVEAS MATCHPROP OPTIONS RECTANG SHADEMODE VPORTS MATERIALS RENDERENVIRONMENT MATERIALS" comment="无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 参照裁剪 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无 无">3A 3DMIRROR 3DNavigate 3DO 3DW 3F 3M 3P 3R A AC ADC AECTOACAD AA AL 3AL AP AR -AR ATT -ATT ATE -ATE ATTE B -B BC BE BH BO -BO BR BS BVS CI CAM CH -CH CHA CHK CLI COL COLOUR C CP CT CYL DMS DAL DAN DAR JOG DBA DBC DC DCE DCENTER DCO DDA DDI DED DI DIV DJO DLI DO DOR DOV DR DRA DRE DRM DS DST DT DV E ED EL ER EX EXIT EXP EXT F FI FSHOT G -G GD GEO GR H -H HE HI I -I IAD IAT ICL IM -IM IMP IN INF IO J L LA -LA LE LEN LI LINEWEIGHT LO LS LT -LT LTYPE -LTYPE LTS LW M MA MAT ME MI ML MO MS MSM MT MV NORTH NORTHDIR O OP ORBIT OS -OS P -P PA PARAM PARTIALOPEN PE PL PO POL PR PRCLOSE PROPS PRE PRINT PS PSOLID PTW PU -PU PYR QC R RA RC RE REA REC REG REN -REN REV RO RP RPR RR RW S SC SCR SE SEC SET SHA SL SN SO SP SPL SPLANE SPE SSM ST STA SU T -T TA TB TH TI TO TOL TOR TP TR TS UC UN -UN UNI V -V VP -VP VS VSM -VSM W -W WE X XA XB -XB XC XL XR -XR ZO AV CP DIMALI DIMANG DIMBASE DIMCONT DIMDIA DIMED DIMTED DIMLIN DIMORD DIMRAD DIMSTY DIMOVER LEAD TM SAVEURL OPENURL INSERTURL AAD AEX ASQ ASE DDATTEXT DDCOLOR DDLMODES DDLTYPE DDMODIFY DDOSNAP DDUCS ACADBLOCKDIALOG ACADWBLOCKDIALOG ADCENTER BMAKE BMOD BPOLY CONTENT DDATTE DDIM DDINSERT DDPLOTSTAMP DDRMODES DDSTYLE DDUCS DDUCSP DDUNITS DDVIEW DIMHORIZONTAL DIMROTATED DIMVERTICAL DOUGHNUT DTEXT DWFOUT DXFIN DXFOUT PAINTER PREFERENCES RECTANGLE SHADE VIEWPORTS RMAT FOG FINISH SETUV SHOWMAT RFILEOPT RENDSCR</选项>
+				<选项 name="其它" cmdname="TGirDer 3wpz openbec_ opensun_" comment="绘制梁 碰撞检查 节能分析 日照分析">HZL PZJC JNFX RZFX</选项>
+				<选项 name="剖面" cmdname="TBudSect TStdSect TObjSect MCGL TSectWin sdwall sdfloor sfloor1 sbeam sroof TSectStair rltplib handrail handrail1 TConnectHandRail FillSect sltoplc2 sltopli2 pltosl" comment="建筑剖面 无 构件剖面 门窗过梁 剖面门窗 无 无 无 无 无 参数楼梯 无 无 无 扶手接头 无 无 无 无">JZPM DCPM GJPM MCGL PMMC HPMQ SXLB YZLB JPDL PMYK CSLT CSLG LTLG LTLB FSJT PMTC JZJC XNJC QXJC</选项>
+				<选项 name="图库图案" cmdname="TKW TBlkConv TBlkMask1 TBlkMask2 TBlkUnMask TBlkLay TMVBlock TChMvBlock TLinePattern MWTC TRepIns TAW GJKW InsertGJK TBlkname XCLIP WIPEOUT THatchAddHole Tpurgeblb" comment="无 图块转化 矩形屏蔽 精确屏蔽 取消屏蔽 图块改层 生二维块 取二维块 线图案 木纹填充 图块替换 图案管理 构件库 构件入库 图块改名 参照裁剪 任意屏蔽 图案加洞 无">TYTK TKZH JXPB JQPB QXPB TKGC SEWK QEWK XTA MWTC TKTH TAGL GJK GJRK TKGM CZCJ RYPB TAJD TKQL</选项>
+				<选项 name="场地布置" cmdname="TUnitSet TConvertReliefmap DrawRedLine TBuildOutLine TRoad TFilRoad TRoadElev TRoadGrade TArcRadDim TRoadWideDim TUndergroundRamp TParkingSpace TParkingStatistic TMultTree TSingleTree tlandscape wordcoord tzelev TCOORDGRID TWINDROSE" comment="单位设置 转地形图 场地红线 建筑轮廓 道路绘制 道路圆角 道路标高 道路坡度 道路半径 路宽标注 地下坡道 车位布置 车位统计 成片布树 任意布树 绘景观路 设坐标系 无 坐标网格 风玫瑰">DWSZ ZDXT CDHX JZLK DLHZ DLYJ DLBG DLPD DLBJ LKBZ DXPD CWTJ CPBS RYBS HJGL SZBX ZTBG ZBWG FMG ZPTL</选项>
+				<选项 name="墙体" cmdname="TGWall tkatana TDivWall TSWall TFillet TChamfer TFixWall TAlignWall TWallTHick TExtThick TChWallTerm TAddInsulate TChEWallHeight TShapeWall TDelWallShape TUcsWall TMarkWall TMarkIntWall TMarkExtWall THLExtWall TAddPatch TWall2Curve TAdjWallBase TOffset TWallAlignroof TPartwall TConvertCurtain TStatVolume TPrjVolume" comment="绘制墙体 墙体切割 等分加墙 单线变墙 倒墙角 倒斜角 修墙角 边线对齐 无 改外墙厚 墙端封口 墙柱保温 改外墙高 异形立面 矩形立面 墙面UCS 识别内外 指定内墙 指定外墙 加亮外墙 墙体造型 平行生线 基线对齐 净距偏移 墙齐屋顶 墙体分段 幕墙转换 无 无">HZQT QTQG DFJQ DXBQ DQJ DXJ XQJ BXDQ GQH GWQH QDFK QZBW GWQG YXLM JXLM QMUCS SBNW ZDNQ ZDWQ JLWQ QTZX PXSX JXDQ JJPY QQWD QTFD MQZH QZTJ QZZB</选项>
+				<选项 name="尺寸标注" cmdname="TDim3 TDimWall TDimTP TDoubleLineDim TDimMP TDimRad TFreedomDim TDimDia TDimAng TResetDimP TResetDimT TDimAdjust TDimTrimExt TDimDel TMergeDim TBreakDim TDimTog TConvDim TDimArc TDimIndoor TDimBreak TDimDivide TConbineDim TQuickDim TAverageDim TArrangeDim TOuterDim TDivideDim TDimStair TDimISOmetry TParallelDim" comment="门窗标注 墙厚标注 两点标注 双线标注 逐点标注 半径标注 快速标注 直径标注 角度标注 文字复位 文字复值 尺寸自调 剪裁延伸 取消尺寸 连接尺寸 增补尺寸 切换角标 尺寸转化 弧弦标注 无 尺寸打断 拆分区间 合并区间 自由标注 等分区间 对齐标注 外包尺寸 等式标注 无 尺寸等距 平行标注">MCBZ QHBZ LDBZ SXBZ ZDBZ BJBZ KSBZ ZJBZ JDBZ WZFW WZFZ CCZT CJYS QXCC LJCC ZBCC QHJB CCZH HXBZ NMBZ CCDD CFQJ HBQJ ZYBZ DFQJ DQBZ WBCC DSBZ LTBZ CCDJ PXBZ</选项>
+				<选项 name="工具" cmdname="TPolyBool TInPlaceEdit TDragCopy TDragMove TMove TSLb TRevPline TRemoveDup TGetExtend TModElev TSeOutline TClip TCutDrawing TPasteClip TUcsElev TRect TLineToPoly join2 Tlinebk TChDash TPolyGlobleWidth TOffLayer TOffOtherLayer TFreezeLayer TFreezeOtherLayer TLockLayer TLockOtherLayer TopenAllLayer TResetAllLayer TRemoveDupObj TOnLayer TUnFreezeLayer TUnLockLayer TMergeLayer TGChangeLayer TGroupEdit TLengthSum DrawOrderF DrawOrderB DrawOrderU DrawOrderA ALXLEFT ALXRIGHT ALYTOP ALYMID HoriDistribution VertDistribution ParallelEnt" comment="布尔运算 在位编辑 自由复制 自由移动 移位 无 反向 消除重线 测量边界 统一标高 搜索轮廓 无 图形切割 自由粘贴 设置立面 矩形 线变复线 无 无 虚实变换 加粗曲线 关闭图层 关闭其它 冻结图层 冻结其他 锁定图层 锁定其他 图层全开 图层恢复 消重图元 打开图层 解冻图层 解锁图层 合并图层 图元改层 组编辑 长度统计 前置 后置 置对象上 置对象下 水平齐左 水平齐右 垂直齐顶 垂直齐中 水平间距 垂直间距 平行">BEYS ZWBJ ZYFZ ZYYD YW HDGL FX XCCX CLBJ TYBG SSLK TXCJ TXQG ZYNT SZLM JX XBFX LJXD JDDD XSBH JCQX GBTC GBQT DJTC DJQT SDTC SDQT TCQK TCHF XCTY DKTC JDTC JSTC HBTC TYGC ZBJ CDTJ QZ HZ ZDXS ZDXX SPQZ SPQY CZQD CZQZ SPJJ CZJJ PX</选项>
+				<选项 name="帮助" cmdname="THelp TFlashTut TCurTips TchFaq Tabout TReportBug" comment="在线帮助 无 日积月累 常见问题 无 问题报告">ZXBZ JXYS RJYL CJWT BBXX WTBG</选项>
+				<选项 name="房间屋顶" cmdname="TSpArea TUpdSpace TSan TApart TClap TRoflna TSlopeRoof TDormer TApartArea TPlusText TKickBoard TStrm hiproof TCuspRoof sdvln ddvln TSpOutline TSortSpace TDualSlopeRoof TRectRoof TProjectArea TShareArea TSpGround" comment="查询面积 搜索房间 布置洁具 布置隔断 布置隔板 搜屋顶线 任意坡顶 加老虎窗 套内面积 面积计算 加踢脚线 加雨水管 无 攒尖屋顶 无 无 房间轮廓 房间排序 人字坡顶 矩形屋顶 面积统计 公摊面积 无">CXMJ SSFJ BZJJ BZGD BZGB SWDX RYPD JLHC TNMJ MJJS JTJX JYSG BZPD CJWD JSFG OSFG FJLK FJPX RZPD JXWD MJTJ GTMJ FJDM</选项>
+				<选项 name="文件布图" cmdname="TProjectManager TBindref TFindref TOpen TExplode TSaveAs TSaveAs TSaveAs TConvTch TBatSave TBatSave TLayerConvert TMakeVp TChScale TSaveLayout TRestoreLayout TLayoutRot TTitleFrame TTitleList TProtect TSavexe TResColor TMONO TPartSaveAs TZBD TZBD BDCT" comment="工程管理 绑定参照 重载参照 无 分解对象 无 无 无 旧图转换 批量导出 批量导出 图层转换 无 改变比例 无 无 布局旋转 插入图框 图纸目录 图纸保护 插件发布 颜色恢复 图变单色 局部导出 整图比对 整图比对 无">GCGL BDCZ CZCZ DKWJ FJDX LCJB TXDC ZTDC JTZH PLZJ PLDC TCZH DYSK GBBL BJBC BJHF BJXZ CRTK TZML TZBH CJFB YSHF TBDS JBDC TZBD ZTBD BDCT</选项>
+				<选项 name="文字表格" cmdname="TStyleEx TTextAdjust ttext TTextConv TTextMerge TTextMask TNewSheet TSheetEdit TCellEdit TCellMerge TSumCellDigit TRowEdit TColEdit TBig5_Gb TRepFind TInputSheet TCopyCell TCellInsertBlock TDelMerge TSheetDelRow TSheetInsertRow TCopyAndPlus TSplitSheet TMergeSheet TEqualTextHeight TWordLib txtpl TPassText TUTextMask" comment="文字样式 转角自纠 无 文字转化 文字合并 文字屏蔽 新建表格 全屏编辑 单元编辑 单元合并 单元累加 表行编辑 表列编辑 无 查找替换 无 单元复制 单元插图 撤销合并 删除表行 增加表行 单元递增 拆分表格 合并表格 统一字高 专业词库 无 递增文字 无">WZYS ZJZJ DHWZ WZZH WZHB WZPB XJBG QPBJ DYBJ DYHB DYLJ BHBJ BLBJ FJZH CZTH bgtx dyfz DYCT cxhb scbh zjbh dydz CFBG HBBG TYZG ZYCK QXWZ DZWZ QXPB</选项>
+				<选项 name="柱子" cmdname="TGColumn TCornColu TPolyColu TChHeight TFortiColu TAlignColu TStatVolume TPrjVolume" comment="标准柱 角柱 异形柱 改高度 构造柱 柱齐墙边 无 无">BZZ JZ YXZ GGD GZZ ZQQB TJB TJZB</选项>
+				<选项 name="楼梯其他" cmdname="TLStair TAStair TCStair THandRail TRStair TElevator TBalcony TStep TAscent Toutlna TLinkHand TMultiStair tdrawautostair TDrawParallelStair TDrawCornerStair TDrawDoubleMulStair TDrawScissorsStair TDrawCrossStair TDrawTriangleStair TDrawRectCornerStair TRailingSwitch TStepStoneSwitch" comment="直线梯段 圆弧梯段 任意梯段 添加扶手 双跑楼梯 电梯 阳台 台阶 坡道 无 连接扶手 多跑楼梯 自动扶梯 双分平行 双分转角 双分三跑 交叉楼梯 剪刀楼梯 三角楼梯 矩形转角 栏板切换 踏步切换">ZXTD YHTD RYTD TJFS SPLT DT YT TJ PD SS LJFS DPLT ZDFT SFPX SFZJ SFSP JCLT JDLT SJLT JXZJ LBQH TBQH</选项>
+				<选项 name="渲染" cmdname="_materials _MaterialAttach materialmap light lightlist rendercrop Render RPREF" comment="无 无 无 无 无 无 无 无">CZGl CZFC TTTZ CJGY GYGL CKXR XR XRSZ</选项>
+				<选项 name="立面" cmdname="TBudElev TStdElev TObjElev TEWinLib TEBalLib TElevOutline TEWPara ZLMX elwct TEStrm TLmRoof" comment="建筑立面 无 构件立面 立面门窗 立面阳台 立面轮廓 门窗参数 柱立面线 无 雨水管线 无">JZLM DCLM GJLM LMMC LMYT LMLK MCCS ZLMX LMCT YSGX LMWD</选项>
+				<选项 name="符号标注" cmdname="TCoord TCheckCoord TMElev TCheckElev TIndexPTr TIndexDim TSection TSection TSection1 TArrow TLeader TComposing TSymmetry TNorthThumb TDrawingName TSymbCut TArrangeElev trevcloud" comment="坐标标注 坐标检查 标高标注 标高检查 无 索引图名 剖切符号 剖切符号 无 箭头引注 引出标注 做法标注 画对称轴 画指北针 图名标注 无 标高对齐 绘制云线">ZBBZ ZBJC BGBZ BGJC SYFH SYTM PQFH PMPQ DMPQ JTYZ YCBZ ZFBZ HDCZ HZBZ TMBZ JZDX BGDQ HZYX</选项>
+				<选项 name="自定义" cmdname="LAYISO LAYUNISO LAYON LAYOFF LAYMCUR LAYMCH LAYLCK LAYULK TDimMP SELECTSIMILAR COPYBASE DIM REFEDIT TDimMP XLINE DIST PLINE CIRCLE LINE LAYISO LAYUNISO LAYON LAYOFF LAYMCUR LAYMCH LAYLCK LAYULK TDimMP SELECTSIMILAR COPYBASE COPY DIM REFEDIT TDimMP XLINE DIST PLINE CIRCLE LINE UNGROUP TSYMBCUT MOVE TPolyGlobleWidth ADDSELECTED TOFFOTHERLAYER OPENALLLAYER TOFFLAYER REFEDIT REFSET MATCHPROP" comment="无 无 无 无 无 无 无 无 逐点标注 无 无 无 无 逐点标注 无 无 无 无 无 无 无 无 无 无 无 无 无 逐点标注 无 无 无 无 无 逐点标注 无 无 无 无 无 无 无 无 加粗曲线 无 无 无 无 无 无 无">LI LUI LO LP LJ LK LL LUL SSD SES CB D EB Z X1 D1 Q1 C1 1 LI LUI LO LP LJ LK LL LUL SSD SES CB C D BN Z X1 D1 Q1 C1 1 UG ZDX V Y AD FG FV FT BN BG MJ</选项>
+				<选项 name="设置" cmdname="toptions TLayerManager TCustomize" comment="天正选项 图层管理 自定义">TZXX TCGL ZDY</选项>
+				<选项 name="设置观察" cmdname="TProjectManager TGroupFloor TMap2D TLHeight TPScale TUpdView T3DO TCamera TShow2D TShow3D TShowAuto TMkHide TLocVis TUnHide TSelObj TobjInfo TObjEdit TVrCamera TPathVideo TWalkVideo TMaxVport TResVport TFullView TSaveView TCamLocator TFixView TSetting" comment="工程管理 三维组合 图形变线 无 当前比例 无 无 无 完全二维 完全三维 自动确定 局部隐藏 局部可见 恢复可见 对象选择 无 对象编辑 无 无 无 视口放大1 视口恢复 视图满屏 视图存盘 定位观察 无 无">LCB SWZH TXBX DQCG DQBL SXSK DTGC XJTS WQEW WQSW ZDQD JBYC JBKJ HFKJ DXXZ DXCX DXBJ XNMY HRDH CSDH SKFD SKHF STMP STCP DWGC STGD GJXX</选项>
+				<选项 name="轴网" cmdname="TRectAxis TWall2Axis TMultAxisDim TSingleAxisDim TReAxisNo TAddLabel TDelLabel TInsAxis TClipAxis TRevAxno TAxisDote TMutiLabel TShowLabel TChAxisNo TMergeAxis" comment="绘制轴网 墙生轴网 轴网标注 单轴标注 重排轴号 添补轴号 删除轴号 添加轴线 轴线裁剪 倒排轴号 轴改线型 一轴多号 轴号隐现 主附转换 轴网合并">HZZW QSZW ZWBZ DZBZ CPZH TBZH SCZH TJZX ZXCJ DPZH ZGXX YZDH ZHYX ZFZH ZWHB</选项>
+				<选项 name="造型工具" cmdname="TSlab TVertSlab TCurveMesh TRailLib TRail TRail TSol2Face TMergeFace TClip3D THideEdge TCurve2Face TPolyMesh TSlope TNetShelf TLine2Face sf3d" comment="平板 竖板 路径曲面 栏杆库 路径排列 路径排列 实体转面 面片合成 三维切割 隐去边线 厚线变面 变截面体 等高建模 三维网架 线转面 无">PB SB LJQM LGK LG LJPL STZM MPHC SWQG YQBX HXBM BJMT DGJM SWWJ XZM XMJH</选项>
+				<选项 name="门窗" cmdname="Tgdoor Tgwindow TBayOpening THoldOpening TBanWin TGroupOpening TCornerWin TPolyHole TOpSlot TChWinLab TValidOp TStatOp TPrjOp TOpTem TDoorLine TResetLabPos TMirWinIO TMapWinFrame TExpWinFrame TOpeningSlot TReplaceOpening TWin2Lib TLabelFix TSetWinLab TWDRegul TFillOpening" comment="无 无 无 无 带形窗 组合门窗 转角窗 异形洞 门窗套 门窗编号 门窗检查 门窗表 无 门窗原型 门口线 编号复位 内外翻转 窗棂映射 窗棂展开 加装饰套 门窗替换 门窗入库 编号后缀 编号设置 门窗归整 门窗填墙">CM CC TC CD DXC ZHMC ZJC YXD MCT MCBH MCJC MCB MCZB MCYX MKX BHFW NWFZ CLYS CLZK JZST MCTH MCRK BHHZ BHSZ MCGZ MCTQ</选项>
+			</目录>
+			<选项 name="一键快捷" cmdname="LAYMCUR TMkHide TLocVis TUnHide TDragCopy TDragMove TPasteClip LAYMCH trevcloud" comment="置为当前 局部隐藏 局部可见 恢复可见 自由复制 自由移动 自由粘贴 匹配图层 绘制云线">2 4 5 6 7 8 9 3 0</选项>
+			<选项 name="启用快捷键" options="是 否">是</选项>
+		</目录>
+	</目录>
+</目录>
