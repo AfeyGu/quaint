@@ -1,2 +1,2 @@
-# quaint
-AutoLISP scripts for civil engineering.
+# Quaint
+AutoLISP scripts for civil engineering. 
