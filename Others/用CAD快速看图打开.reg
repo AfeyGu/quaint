@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.23\shell\用 CAD快速看图 打开]
+"Icon"="C:\\Program Files (x86)\\CADReader\\CADReader.exe,0"
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.23\shell\用 CAD快速看图 打开\command]
+@="C:\\Program Files (x86)\\CADReader\\CADReader.exe %1"
+
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.20\shell\用 CAD快速看图 打开]
+"Icon"="C:\\Program Files (x86)\\CADReader\\CADReader.exe,0"
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.20\shell\用 CAD快速看图 打开\command]
+@="C:\\Program Files (x86)\\CADReader\\CADReader.exe %1"
+
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.18\shell\用 CAD快速看图 打开]
+"Icon"="C:\\Program Files (x86)\\CADReader\\CADReader.exe,0"
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.18\shell\用 CAD快速看图 打开\command]
+@="C:\\Program Files (x86)\\CADReader\\CADReader.exe %1"
+
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.17\shell\用 CAD快速看图 打开]
+"Icon"="C:\\Program Files (x86)\\CADReader\\CADReader.exe,0"
+
+[HKEY_CLASSES_ROOT\AutoCAD.Drawing.17\shell\用 CAD快速看图 打开\command]
+@="C:\\Program Files (x86)\\CADReader\\CADReader.exe %1"
