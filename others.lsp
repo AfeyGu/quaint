@@ -11,9 +11,8 @@
 ;;;	TODO：选择对象
 (defun c:aaaalign-textangle (/ A B) 
 	(setq A (ssget))
-	(setq B (getangle "指定第一点:\n"))
-	(changeby2p)
-	(defun changeby2p (/ i)
+	(setq B (getangle "指定第一点:<E:east>\n"))
+	(defun changebyanlge (/ i)
 		(defun change-angle (new-rad ent-data)
 			(entmod (subst
 						(cons 50 new-rad) 
@@ -23,7 +22,8 @@
 		(repeat (sslength A)
 			(progn 
 				(change-angle B (entget (ssname A i)))
-				(setq i (1+ i))))))
+				(setq i (1+ i)))))
+	(changebyanlge))
 		
 (defun c:ddf (/ A B)
 	(princ "指定要修改对象:")
@@ -49,7 +49,7 @@
 (defun align-text (/ A B)
 	;;;	Judge witch mode
 	(nil)
-	(defun changeby2p (/ i)	;;;	Change by 2 point
+	(defun changebyanlge (/ i)	;;;	Change by anlge
 		(defun change-angle (new-rad ent-data)
 			(entmod (subst
 						(cons 50 new-rad) 
@@ -68,5 +68,4 @@
 							(assoc 50 (entget (ssname B 0)))
 							(assoc 50 (entget (ssname A i)))
 							(entget (ssname A i))))
-				(setq i (1+ i)))))
-	)
+				(setq i (1+ i))))))
