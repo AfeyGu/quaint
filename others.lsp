@@ -6,6 +6,20 @@
 
 ;;;	PASTEBLOCK
 
+
+
+(defun C:1 ( / gp)
+	(setvar "cmdecho" 0)
+	(princ "\n★改变对象颜色为红色★")
+	(setq gp (ssget))
+	(if (/= gp nil) (command ".change" gp "" "p" "c" "1" ""))
+	(princ "\nOK")
+	(princ)
+);end defun C:1 
+
+
+
+
 ;;; 将文字旋转至所选角度
 ;;;	50-角度，51-倾斜角度
 ;;;	TODO：选择对象
