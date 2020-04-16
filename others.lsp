@@ -4,7 +4,7 @@
 
 ;;; 自定义->界面->....鼠标双击->块->宏 bedit->refedit
 
-;;;	PASTEBLOCK
+;;;	(setvar "orthomode" (abs (1- (getvar "orthomode"))))
 
 
 
