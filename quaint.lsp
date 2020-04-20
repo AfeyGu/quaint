@@ -43,12 +43,30 @@
 			(setq i (1+ i)))))
 
 
-;;;	计算文本表达式值
-(defun calc-text (/ A)
+;;;	计算表达式值
+;;;	maybe can use foreach funcation
+(defun calc-text (/ A i text)
 	(setq A (ssget))
-	(cal (cdr (assoc 1 (entget (ssname A 0))))))
+	(setq i 0)
+	(repeat (sslength A)
+		(progn
+			(setq text (get-obj-att (ssname A i) 1))
+			(set-obj-att
+				(ssname A i)
+				1
+				(strcat text "=" (rtos (cal text))))
+			(setq i (1+ i)))))
 
 
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))) 
+;;;	get attribute of object
+(defun get-obj-att (Obj num)
+	(cdr (assoc num (entget Obj))))
+;;;	set attribute of object
+(defun set-obj-att (Obj num att)
+	(entmod (subst
+			(cons num att)
+			(assoc num (entget Obj))
+			(entget Obj))))
