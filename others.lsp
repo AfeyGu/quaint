@@ -92,30 +92,56 @@
 ;;;	对象的定义数据ent -> entget
 ;;;	assoc  cdr
 
-(defun c:asb () (calc-text*))
-(defun calc-text (/ A)
-	(setq A (ssget))
-	(cal (cdr (assoc 1 (entget (ssname A 0))))))
-(defun calc-text2 (/ A)
-	(setq A (ssget))
-	(set-obj-att (ssname A 0) 1 (cal (get-obj-att (ssname A 0) 1))))
-;;;	maybe can use foreach funcation
+
 (defun calc-text* (/ A i)
 	(setq A (ssget))
 	(setq i 0)
+	(defun cutstr (str)
+		(substr str 1 (VL-String-Search "=" str)))
+	(defun calc (obj)
+		(cond ( (wcmatch (get-obj-att obj 1) "=*")
+				(set-obj-att
+					obj
+					1
+					(strcat
+						(cutstr (get-obj-att obj 1))
+						"="
+						(rtos (cal (cutstr (get-obj-att obj 1)))))))
+			( (not (wcmatch (get-obj-att obj 1) "=*"))
+				(set-obj-att obj 1 (rtos (cal (get-obj-att obj 1)))))
+			(t pause)))
 	(repeat (sslength A)
-		(progn 
-			(set-obj-att (ssname A i) 1 (cal (get-obj-att (ssname A i) 1)))
+		(progn
+			(set-obj-att
+				(ssname A i)
+				1
+				(calc (ssname A i)))
 			(setq i (1+ i))
-			)))
+)))
+
+
+(defun c:asb () (calc-text*))
+(defun c:ass () (calc-text))
+;;;	maybe can use foreach funcation
+(defun calc-text (/ A i text)
+	(setq A (ssget))
+	(setq i 0)
+	(repeat (sslength A)
+		(progn
+			(setq text (get-obj-att (ssname A i) 1))
+			(set-obj-att
+				(ssname A i)
+				1
+				(strcat text "=" (rtos (cal text))))
+			(setq i (1+ i)))))
+			
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
-
 ;;;	set attribute of object
 (defun set-obj-att (Obj num att)
-	(entmod (subst 
-				(cons num att)
-				(assoc num (entget Obj))
-				(entget Obj))))
+	(entmod (subst
+			(cons num att)
+			(assoc num (entget Obj))
+			(entget Obj))))
 
