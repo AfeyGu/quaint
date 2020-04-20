@@ -1,11 +1,12 @@
 ;;	别名	
 (defun c:zzselect() (c:xselect))
 (defun c:xs() (c:xselect))
-(defun c:a2() (align-textangle))
+(defun c:a1() (align-textangle))
 (defun c:satt() (search-att))
 (defun c:v1() (command "-vports" "j"))	;;;	v1 v2 v3 改变视口
 (defun c:v2() (ai_tiledvp 2 "_V"))
 (defun c:v3() (command "-vports" "3" "V"))
+(defun c:ji() (calc-text))
 
 
 ;;	交选
@@ -40,6 +41,12 @@
 		(progn 
 			(change-angle B (entget (ssname A i)))
 			(setq i (1+ i)))))
+			
+			
+;;;	计算文本表达式值
+(defun calc-text (/ A)
+	(setq A (ssget))
+	(cal (cdr (assoc 1 (entget (ssname A 0))))))
 
 
 ;;; 查询所选对象属性
