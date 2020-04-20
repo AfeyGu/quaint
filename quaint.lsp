@@ -43,18 +43,22 @@
 			(setq i (1+ i)))))
 
 
-;;;	计算表达式值
+;;; 计算表达式值
 ;;;	maybe can use foreach funcation
+;;;	add setting of accuracy 
+;;;	subset x by * (more in cutstr)
 (defun calc-text (/ A i text)
 	(setq A (ssget))
+	(defun cutstr (str)
+		(substr str 1 (VL-String-Search "=" str)))
 	(setq i 0)
 	(repeat (sslength A)
 		(progn
-			(setq text (get-obj-att (ssname A i) 1))
+			(setq text (cutstr (get-obj-att (ssname A i) 1)))
 			(set-obj-att
 				(ssname A i)
 				1
-				(strcat text "=" (rtos (cal text))))
+				(strcat text "=" (rtos (cal text) 2 2)))
 			(setq i (1+ i)))))
 
 
