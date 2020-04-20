@@ -83,3 +83,9 @@
 							(assoc 50 (entget (ssname A i)))
 							(entget (ssname A i))))
 				(setq i (1+ i))))))
+				
+				
+(defun calc-text (/ A)
+	(setq A (ssget))
+	(cal (cdr (assoc 1 (entget (ssname A 0))))))
+	
