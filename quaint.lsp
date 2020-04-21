@@ -7,6 +7,7 @@
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
 (defun c:ji () (calc-text))
+(defun c:gatt () (get-att))
 
 
 ;;	交选
@@ -64,7 +65,11 @@
 
 ;;; 查询所选对象属性
 (defun search-att ()
-	(princ (entget (ssname (ssget) 0)))) 
+	(princ (entget (ssname (ssget) 0))))
+;;; 查询所选对象对应属性	
+(defun get-att (/ num)
+	(setq num (getint "\nDXF:"))
+	(princ (get-obj-att (ssname (ssget) 0) num)))
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
