@@ -8,6 +8,7 @@
 (defun c:v3 () (command "-vports" "3" "V"))
 (defun c:ji () (calc-text))
 (defun c:gatt () (get-att))
+(defun c:wzad () (text-join*))
 
 
 ;;	交选
@@ -63,6 +64,17 @@
 			(setq i (1+ i)))))
 
 
+;;; 文字合并
+(defun text-join (obj1 obj2)
+	(set-obj-att
+		obj1
+		1
+		(strcat (get-obj-att obj1 1) (get-obj-att obj2 1)))
+	(command "erase" obj2 ""))
+(defun text-join* (/ obj1 obj2)
+	(text-join  (car (entsel)) (car (entsel))))
+
+
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0))))
@@ -70,6 +82,12 @@
 (defun get-att (/ num)
 	(setq num (getint "\nDXF:"))
 	(princ (get-obj-att (ssname (ssget) 0) num)))
+	
+	
+	
+	
+	
+	
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))

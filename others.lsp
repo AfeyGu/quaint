@@ -6,6 +6,7 @@
 
 ;;; model->fun ; or import->model (从某个模组运行函数或者加载模组后直接运行函数)
 ;;; 要求：多个函数可以整合成一个函数
+;;; (defun fun () (fun* (ssget))) fun与fun*关系
 
 ;;;	(setvar "orthomode" (abs (1- (getvar "orthomode"))))
 
@@ -71,24 +72,6 @@
 
 
 
-
-;;; 计算表达式值
-;;;	maybe can use foreach funcation
-;;;	add setting of accuracy 
-;;;	subset x by * (more in cutstr)
-(defun calc-text (/ A i text)
-	(setq A (ssget))
-	(defun cutstr (str)
-		(substr str 1 (VL-String-Search "=" str)))
-	(setq i 0)
-	(repeat (sslength A)
-		(progn
-			(setq text (cutstr (get-obj-att (ssname A i) 1)))
-			(set-obj-att
-				(ssname A i)
-				1
-				(strcat text "=" (rtos (cal text) 2 3)))
-			(setq i (1+ i)))))
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
@@ -100,12 +83,6 @@
 			(entget Obj))))
 
 
-
-;;; 文字合并
-(defun text-join (/ obj)
-	(nil))
-(defun text-join* ()
-	(nil))
 (defun wz-edit ()
 	(initget 7 "Join ")
 	(nil))
