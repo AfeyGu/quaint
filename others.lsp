@@ -25,8 +25,11 @@
 ;;; 添加到块
 
 ;;;	可选参数
-(defun define (fun (args) (express)) 
-	(cond () (defun )))
+(defun define (fun (args) (express))
+	(setq nil)
+	(cond (nil) (defun )))
+(define func (args) (express))
+
 
 
 (defun wz-edit ()
