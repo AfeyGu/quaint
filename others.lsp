@@ -95,5 +95,14 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj))))
-;;;	查询对应属性
-(defun )
+
+
+
+;;; 文字合并
+(defun text-join (/ obj)
+	(nil))
+(defun text-join* ()
+	(nil))
+(defun wz-edit ()
+	(initget 7 "Join ")
+	(nil))
