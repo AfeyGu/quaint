@@ -3,7 +3,7 @@
 ;;;	_-vports	合并视口
 
 ;;; 自定义->界面->....鼠标双击->块->宏 bedit->refedit
-
+;;; model->fun ; or import->model (从某个模组运行函数或者加载模组后直接运行函数)
 ;;;	(setvar "orthomode" (abs (1- (getvar "orthomode"))))
 
 
