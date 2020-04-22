@@ -93,8 +93,8 @@
 
 
 
-
-
+;;; nil?
+(defun nil? (/ a) (= nil a))
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
