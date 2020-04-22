@@ -9,12 +9,13 @@
 (defun c:ji () (calc-text))
 (defun c:gatt () (get-att))
 (defun c:wzad () (text-join*))
+(defun c:wzap () (text-add-app*))
 
 
 ;;	交选
 ;;	待加入空集判断
 ;;	解决选择完不显示的问题
-(defun c:xselect (/ A B)
+(defun c:xselect (/ A B intersection)
 	(setq A (ssget) B (ssget))
 	(defun intersection (/ C i)
 		(setq C (ssadd))
@@ -30,7 +31,7 @@
 ;;; 将文字旋转至所选角度
 ;;;	50-角度，51-倾斜角度
 ;;;	TODO：选择对象
-(defun align-textangle (/ A B)
+(defun align-textangle (/ A B i change-angle)
 	(defun change-angle (new-rad ent-data)
 		(entmod (subst
 				(cons 50 new-rad)
@@ -44,12 +45,11 @@
 			(change-angle B (entget (ssname A i)))
 			(setq i (1+ i)))))
 
-
 ;;; 计算表达式值
 ;;;	maybe can use foreach funcation
 ;;;	add setting of accuracy 
 ;;;	subset x by * (more in cutstr)
-(defun calc-text (/ A i text)
+(defun calc-text (/ A i text cutstr)
 	(setq A (ssget))
 	(defun cutstr (str)
 		(substr str 1 (VL-String-Search "=" str)))
@@ -63,17 +63,24 @@
 				(strcat text "=" (rtos (cal text) 2 2)))
 			(setq i (1+ i)))))
 
-
 ;;; 文字合并
 (defun text-join (obj1 obj2)
 	(set-obj-att
 		obj1
 		1
 		(strcat (get-obj-att obj1 1) (get-obj-att obj2 1)))
-	(command "erase" obj2 ""))
+	(cond
+		((eq obj1 obj2) nil)
+		(t (command "erase" obj2 ""))))
 (defun text-join* (/ obj1 obj2)
-	(text-join  (car (entsel)) (car (entsel))))
+	(text-join (car (entsel)) (car (entsel))))
 
+;;; 文字加括号
+(defun text-add-app(obj)
+	(set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
+(defun text-add-app* ()
+	(text-add-app (car (entsel)))
+	(text-add-app*))
 
 ;;; 查询所选对象属性
 (defun search-att ()
@@ -82,12 +89,12 @@
 (defun get-att (/ num)
 	(setq num (getint "\nDXF:"))
 	(princ (get-obj-att (ssname (ssget) 0) num)))
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
@@ -96,4 +103,4 @@
 	(entmod (subst
 			(cons num att)
 			(assoc num (entget Obj))
-			(entget Obj))))
+			(entget Obj)))) 
