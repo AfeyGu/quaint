@@ -1,4 +1,4 @@
-﻿(ai_tiledvp 1 nil);;; 单个视口
+(ai_tiledvp 1 nil);;; 单个视口
 (ai_tiledvp 2 "_V");;;	两个视口
 ;;;	_-vports	合并视口
 ;;; 自定义->界面->....鼠标双击->块->宏 bedit->refedit
@@ -13,7 +13,8 @@
 ;;;	(setvar "orthomode" (abs (1- (getvar "orthomode"))))
 ;;;	选择集 selectset -> ssget
 ;;;	图元（对象） -> 
-;;;	对象名 -> ssname
+;;;	对象名 -> ssname ?
+;;;	(car (entsel))
 ;;;	对象的定义数据ent -> entget
 ;;;	assoc  cdr
 ;;;	-----------------------------------------------------
@@ -29,7 +30,6 @@
 	(setq nil)
 	(cond (nil) (defun )))
 (define func (args) (express))
-
 
 
 (defun wz-edit ()
@@ -90,6 +90,7 @@
 ;;;	函数库
 ;;;	--------------
 (defun nil? (/ a) (= nil a))
+(defun != (/ a b) (not (eq a b)))
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
@@ -99,5 +100,3 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj))))
-
-

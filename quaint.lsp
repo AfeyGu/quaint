@@ -10,6 +10,9 @@
 (defun c:gatt () (get-att))
 (defun c:wzad () (text-join*))
 (defun c:wzap () (text-add-app*))
+(defun c:wzc () (text-copy*))
+(defun c:sbil () (search-block-inlayer*))
+
 
 
 ;;	交选
@@ -26,6 +29,14 @@
 		(setq A nil B nil)
 		(progn (sssetfirst nil C)))
 	(intersection))
+
+;;;	选择图层上所有块  
+;;; 需要用list, 使用`不行
+(defun search-block-inlayer (layer)
+	(sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
+(defun search-block-inlayer* ()
+	(princ "\n Select layer:")
+	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
 
 
 ;;; 将文字旋转至所选角度
@@ -82,19 +93,29 @@
 	(text-add-app (car (entsel)))
 	(text-add-app*))
 
+;;;	 文字复制
+(defun text-copy (t1 t2)
+	(set-obj-att t2 1 (get-obj-att t1 1)))
+(defun text-copy* ()
+	(text-copy (car (entsel)) (car (entsel)))
+	(princ))
+
 ;;; 查询所选对象属性
 (defun search-att ()
-	(princ (entget (ssname (ssget) 0))))
+	(princ (entget (ssname (ssget) 0)))
+	(princ))
 ;;; 查询所选对象对应属性	
 (defun get-att (/ num)
 	(setq num (getint "\nDXF:"))
-	(princ (get-obj-att (ssname (ssget) 0) num)))
+	(princ (get-obj-att (ssname (ssget) 0) num))
+	(princ))
 
 
 
 
 ;;; nil?
 (defun nil? (/ a) (= nil a))
+(defun != (/ a b) (not (eq a b))) ;	not eq
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
