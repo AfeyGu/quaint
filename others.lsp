@@ -82,8 +82,13 @@
 				(setq i (1+ i)))))
 )
 
-
-
+;;;	change-att
+(defun c:catt () (change-att))
+(defun change-att (/ num vl)
+	(setq num (getint "\nDXF:"))
+	(setq vl (getint "\n Value:"))
+	(set-obj-att (ssname (ssget) 0) num vl)
+	(princ))
 
 
 ;;;	--------------
