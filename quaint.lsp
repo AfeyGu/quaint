@@ -1,18 +1,23 @@
-;;	别名	
+;;	别名
+;;;	选择
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
-(defun c:a1 () (align-textangle))
-(defun c:satt () (search-att))
-(defun c:v0 () (ai_tiledvp 1 nil))
-(defun c:v1 () (command "-vports" "j"));;;	v1 v2 v3 改变视口
+;;;	视口
+(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 改变视口数量
+(defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-(defun c:ji () (calc-text))
+(defun c:ji () (calc-text))	;;;	计算text内容
+;;;	属性
+(defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-(defun c:wzad () (text-join*))
+;;;	文本操作
+(defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
+(defun c:wzad () (text-join*))	;;;	文字合并
 (defun c:wzap () (text-add-app*))
 (defun c:wzc () (text-copy*))
-(defun c:sbil () (search-block-inlayer*))
+;;;	块操作
+(defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
 
 
 
