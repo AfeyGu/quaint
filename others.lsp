@@ -1,6 +1,3 @@
-(ai_tiledvp 1 nil);;; 单个视口
-(ai_tiledvp 2 "_V");;;	两个视口
-;;;	_-vports	合并视口
 ;;; 自定义->界面->....鼠标双击->块->宏 bedit->refedit
 
 ;;;	----------------------------------------------------------------------------
@@ -21,6 +18,8 @@
 
 
 ;;;	todo
+;;;	标注
+;;;	(command "dimaligned" '(1000 0 0) '(2000 0 0) '(0 -1000 0))
 ;;; 图块续编
 ;;; 文字编号
 ;;; 添加到块
@@ -86,10 +85,15 @@
 (defun c:catt () (change-att))
 (defun change-att (/ num vl)
 	(setq num (getint "\nDXF:"))
+	(setq vl (getstring "\n Value:"))
+	(set-obj-att (ssname (ssget) 0) num vl)
+	(princ))
+(defun c:catt2 () (change-att2))
+(defun change-att2 (/ num vl)
+	(setq num (getint "\nDXF:"))
 	(setq vl (getint "\n Value:"))
 	(set-obj-att (ssname (ssget) 0) num vl)
 	(princ))
-
 
 ;;;	--------------
 ;;;	函数库
