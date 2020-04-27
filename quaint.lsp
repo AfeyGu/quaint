@@ -3,6 +3,7 @@
 (defun c:xs () (c:xselect))
 (defun c:a1 () (align-textangle))
 (defun c:satt () (search-att))
+(defun c:v0 () (ai_tiledvp 1 nil))
 (defun c:v1 () (command "-vports" "j"));;;	v1 v2 v3 改变视口
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
