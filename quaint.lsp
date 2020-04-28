@@ -18,7 +18,7 @@
 (defun c:wzc () (text-copy*))
 ;;;	块操作
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
-
+(defun c:gb () (copy-to-block))	;;;	复制为块
 
 
 ;;	交选
@@ -36,6 +36,7 @@
 		(progn (sssetfirst nil C)))
 	(intersection))
 
+
 ;;;	选择图层上所有块  
 ;;; 需要用list, 使用`不行
 (defun search-block-inlayer (layer)
@@ -43,6 +44,13 @@
 (defun search-block-inlayer* ()
 	(princ "\n Select layer:")
 	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
+;;;	复制为块
+;;;	todo 可以选择基点
+(defun copy-to-block ()
+	(command "COPYCLIP" (ssget) "")
+	(command "PASTEBLOCK")
+	(princ))
+
 
 
 ;;; 将文字旋转至所选角度
