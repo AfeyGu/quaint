@@ -19,6 +19,7 @@
 ;;;	块操作
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
 (defun c:gb () (copy-to-block))	;;;	复制为块
+(defun c:br () (radom-named-block))	;;;	定义为随机命名的块
 
 
 ;;	交选
@@ -45,11 +46,20 @@
 	(princ "\n Select layer:")
 	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
 ;;;	复制为块
-;;;	todo 可以选择基点
-(defun copy-to-block ()
-	(command "COPYCLIP" (ssget) "")
-	(command "PASTEBLOCK")
+(defun copy-to-block (/ A)
+	(setq A (ssget))
+	(command "copybase" (getpoint "指定基点：") A "")
+	(command "pasteblock")
 	(princ))
+;;;	定义为随机命名的块
+(defun radom-named-block (/ A p)
+	(setq A (ssget))
+	(setq p (getpoint "指定基点："))
+	(command "copybase" p A "")
+	(command "pasteblock" p)
+	(command "erase" A "")
+	(princ))
+
 
 
 
