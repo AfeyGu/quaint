@@ -1,4 +1,4 @@
-;;	别名
+;;;	别名
 ;;;	选择
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
