@@ -1,30 +1,30 @@
-;;;	±ğÃû
-;;;	Ñ¡Ôñ
+ï»¿;;;	åˆ«å
+;;;	é€‰æ‹©
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
-;;;	ÊÓ¿Ú
-(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 ¸Ä±äÊÓ¿ÚÊıÁ¿
+;;;	è§†å£
+(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 æ”¹å˜è§†å£æ•°é‡
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-(defun c:ji () (calc-text))	;;;	¼ÆËãtextÄÚÈİ
-;;;	ÊôĞÔ
+(defun c:ji () (calc-text))	;;;	è®¡ç®—textå†…å®¹
+;;;	å±æ€§
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-;;;	ÎÄ±¾²Ù×÷
-(defun c:a1 () (align-textangle))	;;;	ÎÄ×ÖĞı×ªÖ¸¶¨½Ç¶È
-(defun c:wzad () (text-join*))	;;;	ÎÄ×ÖºÏ²¢
+;;;	æ–‡æœ¬æ“ä½œ
+(defun c:a1 () (align-textangle))	;;;	æ–‡å­—æ—‹è½¬æŒ‡å®šè§’åº¦
+(defun c:wzad () (text-join*))	;;;	æ–‡å­—åˆå¹¶
 (defun c:wzap () (text-add-app*))
 (defun c:wzc () (text-copy*))
-;;;	¿é²Ù×÷
-(defun c:sbil () (search-block-inlayer*))	;;;	Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é
-(defun c:gb () (copy-to-block))	;;;	¸´ÖÆÎª¿é
-(defun c:br () (radom-named-block))	;;;	¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
+;;;	å—æ“ä½œ
+(defun c:sbil () (search-block-inlayer*))	;;;	é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—
+(defun c:gb () (copy-to-block))	;;;	å¤åˆ¶ä¸ºå—
+(defun c:br () (radom-named-block))	;;;	å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
 
 
-;;	½»Ñ¡
-;;	´ı¼ÓÈë¿Õ¼¯ÅĞ¶Ï
-;;	½â¾öÑ¡ÔñÍê²»ÏÔÊ¾µÄÎÊÌâ
+;;	äº¤é€‰
+;;	å¾…åŠ å…¥ç©ºé›†åˆ¤æ–­
+;;	è§£å†³é€‰æ‹©å®Œä¸æ˜¾ç¤ºçš„é—®é¢˜
 (defun c:xselect (/ A B intersection)
 	(setq A (ssget) B (ssget))
 	(defun intersection (/ C i)
@@ -38,23 +38,23 @@
 	(intersection))
 
 
-;;;	Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é  
-;;; ĞèÒªÓÃlist, Ê¹ÓÃ`²»ĞĞ
+;;;	é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—  
+;;; éœ€è¦ç”¨list, ä½¿ç”¨`ä¸è¡Œ
 (defun search-block-inlayer (layer)
 	(sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
 (defun search-block-inlayer* ()
 	(princ "\n Select layer:")
 	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
-;;;	¸´ÖÆÎª¿é
+;;;	å¤åˆ¶ä¸ºå—
 (defun copy-to-block (/ A)
 	(setq A (ssget))
-	(command "copybase" (getpoint "Ö¸¶¨»ùµã£º") A "")
+	(command "copybase" (getpoint "æŒ‡å®šåŸºç‚¹ï¼š") A "")
 	(command "pasteblock")
 	(princ))
-;;;	¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
+;;;	å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
 (defun radom-named-block (/ A p)
 	(setq A (ssget))
-	(setq p (getpoint "Ö¸¶¨»ùµã£º"))
+	(setq p (getpoint "æŒ‡å®šåŸºç‚¹ï¼š"))
 	(command "copybase" p A "")
 	(command "pasteblock" p)
 	(command "erase" A "")
@@ -63,9 +63,9 @@
 
 
 
-;;; ½«ÎÄ×ÖĞı×ªÖÁËùÑ¡½Ç¶È
-;;;	50-½Ç¶È£¬51-ÇãĞ±½Ç¶È
-;;;	TODO£ºÑ¡Ôñ¶ÔÏó
+;;; å°†æ–‡å­—æ—‹è½¬è‡³æ‰€é€‰è§’åº¦
+;;;	50-è§’åº¦ï¼Œ51-å€¾æ–œè§’åº¦
+;;;	TODOï¼šé€‰æ‹©å¯¹è±¡
 (defun align-textangle (/ A B i change-angle)
 	(defun change-angle (new-rad ent-data)
 		(entmod (subst
@@ -73,32 +73,31 @@
 				(assoc 50 ent-data)
 				ent-data)))
 	(setq A (ssget))
-	(setq B (getangle "Ö¸¶¨µÚÒ»µã:"))
+	(setq B (getangle "æŒ‡å®šç¬¬ä¸€ç‚¹:"))
 	(setq i 0)
 	(repeat (sslength A)
 		(progn
 			(change-angle B (entget (ssname A i)))
 			(setq i (1+ i)))))
 
-;;; ¼ÆËã±í´ïÊ½Öµ
-;;;	maybe can use foreach funcation
+;;; è®¡ç®—è¡¨è¾¾å¼å€¼
 ;;;	add setting of accuracy 
-;;;	subset x by * (more in cutstr)
-(defun calc-text (/ A i text cutstr)
+(defun calc-text (/ A i text text0 cutstr)
 	(setq A (ssget))
 	(defun cutstr (str)
 		(substr str 1 (VL-String-Search "=" str)))
 	(setq i 0)
 	(repeat (sslength A)
 		(progn
-			(setq text (cutstr (get-obj-att (ssname A i) 1)))
+			(setq text0 (cutstr (get-obj-att (ssname A i) 1)))
+			(setq text (vl-string-Translate "xX" "**" text0))	;;;	subset x by * (not in cutstr, because we need use "xX" in strcar funcation)
 			(set-obj-att
 				(ssname A i)
 				1
-				(strcat text "=" (rtos (cal text) 2 2)))
+				(strcat text0 "=" (rtos (cal text) 2 2)))
 			(setq i (1+ i)))))
 
-;;; ÎÄ×ÖºÏ²¢
+;;; æ–‡å­—åˆå¹¶
 (defun text-join (obj1 obj2)
 	(set-obj-att
 		obj1
@@ -110,25 +109,25 @@
 (defun text-join* (/ obj1 obj2)
 	(text-join (car (entsel)) (car (entsel))))
 
-;;; ÎÄ×Ö¼ÓÀ¨ºÅ
+;;; æ–‡å­—åŠ æ‹¬å·
 (defun text-add-app(obj)
 	(set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
 (defun text-add-app* ()
 	(text-add-app (car (entsel)))
 	(text-add-app*))
 
-;;;	 ÎÄ×Ö¸´ÖÆ
+;;;	 æ–‡å­—å¤åˆ¶
 (defun text-copy (t1 t2)
 	(set-obj-att t2 1 (get-obj-att t1 1)))
 (defun text-copy* ()
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
 
-;;; ²éÑ¯ËùÑ¡¶ÔÏóÊôĞÔ
+;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å±æ€§
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
 	(princ))
-;;; ²éÑ¯ËùÑ¡¶ÔÏó¶ÔÓ¦ÊôĞÔ	
+;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å¯¹åº”å±æ€§	
 (defun get-att (/ num)
 	(setq num (getint "\nDXF:"))
 	(princ (get-obj-att (ssname (ssget) 0) num))

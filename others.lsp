@@ -25,6 +25,36 @@
 ;;; 添加到块
 
 
+;;;	视口切换
+(defun pan-view (size-ctr / size ctr)
+	(setq 
+		size (car size-ctr)
+		ctr (cdr size-ctr))
+	(command "pan" ctr (getvar "viewctr"))
+	(command "zoom" "s" (/ size (getvar "viewsize")))
+	)
+(defun set-view (Num / table setab)
+	(defun table () 
+		(cond 
+			((= Num 0) (setab v0))
+			((= Num 1) (setab v1))
+			((= Num 2) (setab v2))
+			((= Num 3) (setab v3))
+			((= Num 4) (setab v4))
+			((= Num 5) (setab v5))
+			((= Num 6) (setab v6))
+			((= Num 7) (setab v7))
+			((= Num 8) (setab v8))
+			((= Num 9) (setab v9))
+			(T nil))
+	(defun setab (view)
+		(setq view (cons (getvar "viewsize") (getvar "viewctr"))))))
+(defun d (/ a)
+	(setq a (getint "input:"))
+	(cond 
+		((= nil a) (set-view 1))
+		()))
+
 ;;;	可选参数
 (defun define (fun (args) (express))
 	(setq nil)
@@ -44,6 +74,25 @@
 	(princ "\nOK")
 	(princ)
 );end defun C:1 
+
+
+
+;;; 计算表达式值
+;;;	add setting of accuracy 
+(defun calc-text (/ A i text text0 cutstr)
+	(setq A (ssget))
+	(defun cutstr (str)
+		(substr str 1 (VL-String-Search "=" str)))
+	(setq i 0)
+	(repeat (sslength A)
+		(progn
+			(setq text0 (cutstr (get-obj-att (ssname A i) 1)))
+			(setq text (vl-string-Translate "xX" "**" text0))
+			(set-obj-att
+				(ssname A i)
+				1
+				(strcat text0 "=" (rtos (cal text) 2 2)))
+			(setq i (1+ i)))))
 
 
 ;;; 将文字旋转至所选角度
