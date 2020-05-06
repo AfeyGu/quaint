@@ -24,6 +24,10 @@
 ;;; 文字编号
 ;;; 添加到块
 
+;;; 改变颜色
+(vla-put-color (vlax-ename->vla-object (car (entsel))) 8)
+(VLAX-Dump-Object (vlax-ename->vla-object (car (entsel))) T)
+
 
 ;;;	视口切换
 (defun pan-view (size-ctr / size ctr)

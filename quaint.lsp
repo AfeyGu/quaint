@@ -39,7 +39,7 @@
 
 
 ;;;	选择图层上所有块  
-;;; 需要用list, 使用`不行
+;;; 需要用list, 使用'不行
 (defun search-block-inlayer (layer)
 	(sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
 (defun search-block-inlayer* ()
