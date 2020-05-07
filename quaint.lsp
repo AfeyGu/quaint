@@ -1,4 +1,4 @@
-﻿;;;	别名
+;;;	别名
 ;;;	选择
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
@@ -7,7 +7,6 @@
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-(defun c:ji () (calc-text))	;;;	计算text内容
 ;;;	属性
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
@@ -16,6 +15,7 @@
 (defun c:wzad () (text-join*))	;;;	文字合并
 (defun c:wzap () (text-add-app*))
 (defun c:wzc () (text-copy*))
+(defun c:ji () (calc-text))	;;;	计算text内容
 ;;;	块操作
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
 (defun c:gb () (copy-to-block))	;;;	复制为块
