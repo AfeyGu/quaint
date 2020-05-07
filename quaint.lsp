@@ -126,6 +126,12 @@
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
 
+;;;	改变颜色
+(defun C:8 (/ gp)
+	;(setvar "cmdecho" 0)
+	(setq gp (ssget))
+	(if (/= gp nil) (command ".change" gp "" "p" "c" "8" ""))
+	(princ)) 
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
