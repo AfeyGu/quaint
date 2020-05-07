@@ -82,19 +82,22 @@
 
 ;;; 计算表达式值
 ;;;	add setting of accuracy 
-(defun calc-text (/ A i text text0 cutstr)
+(defun calc-text (/ A i e text text0 text1 cutstr)
 	(setq A (ssget))
 	(defun cutstr (str)
 		(substr str 1 (VL-String-Search "=" str)))
 	(setq i 0)
 	(repeat (sslength A)
 		(progn
-			(setq text0 (cutstr (get-obj-att (ssname A i) 1)))
-			(setq text (vl-string-Translate "xX" "**" text0))	;;;	subset x by * (not in cutstr, because we need use "xX" in strcar funcation)
+			(setq text0 (get-obj-att (ssname A i) 1))
+			(if (= "=" (substr text0 1 1))	;;;	try to move first "="
+				(progn (setq e "=") (setq text1 (cutstr (substr text0 2)))) 
+				(progn (setq e "") (setq text1 (cutstr text0))))
+			(setq text (vl-string-Translate "xX" "**" text1))	;;;	subset x by * (not in cutstr, because we need use "xX" in strcar funcation)
 			(set-obj-att
 				(ssname A i)
 				1
-				(strcat text0 "=" (rtos (cal text) 2 2)))
+				(strcat e text1 "=" (rtos (cal text) 2 2)))
 			(setq i (1+ i)))))
 
 ;;; 文字合并
