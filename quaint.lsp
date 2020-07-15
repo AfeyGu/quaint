@@ -11,6 +11,7 @@
 ;;;	属性
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
+(defun c:22 () (setlayer0))
 ;;;	文本操作
 (defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
 (defun c:wzad () (text-join*))	;;;	文字合并
@@ -53,6 +54,7 @@
 	(command "copybase" (getpoint "指定基点：") A "")
 	(command "pasteblock")
 	(princ))
+	
 ;;;	定义为随机命名的块
 (defun random-named-block (/ A p)
 	(setq A (ssget))
@@ -140,7 +142,16 @@
 	;(setvar "cmdecho" 0)
 	(setq gp (ssget))
 	(if (/= gp nil) (command ".change" gp "" "p" "c" "8" ""))
-	(princ)) 
+	(princ))
+(defun C:88 (/ gp)
+	;(setvar "cmdecho" 0)
+	(setq gp (ssget))
+	(if (/= gp nil) (command ".change" gp "" "p" "c" "ByLayer" ""))
+	(princ))
+;;; 设置当前图层为0
+(defun setlayer0 ()
+	(command "-layer" "s" "0" "")
+	(princ))
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
