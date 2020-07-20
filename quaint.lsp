@@ -137,6 +137,60 @@
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
 
+
+;;; 图层操作
+;;; 隔离
+(Defun C:toffotherlayer (/ SS CNT LAY LAYLST VAL)
+  (if (not (setq SS (ssget "i")))
+    (progn
+      (setq SS (ssget))))
+  (if SS
+    (progn
+      (setq CNT 0)
+      (while (setq LAY (ssname SS CNT))
+        (setq LAY (cdr (assoc 8 (entget LAY))))
+        (if (not (member LAY LAYLST))
+          (setq LAYLST (cons LAY LAYLST)))
+        (setq CNT (1+ CNT)))
+      (if (member (getvar "CLAYER") LAYLST)
+        (setq LAY (getvar "CLAYER"))
+        (setvar "CLAYER" (setq LAY (last LAYLST))))
+      (command "_.-LAYER" "_OFF" "*" "_Y")
+      (foreach VAL LAYLST (command "_ON" VAL))
+      (command "")))
+  (restore_old_error)
+  (princ))
+;;; 图层全开
+(DEFUN C:openalllayer()
+	(COMMAND "-LAYER" "T" "*" "ON" "*" "")
+	(princ))
+;;; 关闭图层
+(Defun C:tofflayer (/ SS CNT LAY LAYLST VAL)
+  (if (not (setq SS (ssget "i")))
+    (progn
+      (setq SS (ssget))))
+  (if SS
+    (progn
+      (setq CNT 0)
+      (while (setq LAY (ssname SS CNT))
+        (setq LAY (cdr (assoc 8 (entget LAY))))
+        (if (not (member LAY LAYLST))
+          (setq LAYLST (cons LAY LAYLST)))
+        (setq CNT (1+ CNT)))
+      (command "_.-LAYER")
+      (foreach VAL LAYLST (command "_f" VAL))
+      (foreach VAL LAYLST (command "_off" VAL))
+      (command "")))
+  (restore_old_error)
+  (princ))
+
+
+
+
+
+
+
+
 ;;;	改变颜色
 (defun C:8 (/ gp)
 	;(setvar "cmdecho" 0)
@@ -161,6 +215,11 @@
 	(setq num (getint "\nDXF:"))
 	(princ (get-obj-att (ssname (ssget) 0) num))
 	(princ))
+
+
+
+
+
 
 
 
