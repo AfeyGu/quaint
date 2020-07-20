@@ -186,7 +186,10 @@
 
 
 
-
+;;; 对象操作
+;;; Break with First option at 1 point
+(defun breakatpoint ()
+  (command "_.break" pause "_first" pause "@"))
 
 
 
@@ -223,7 +226,6 @@
 
 
 
-
 ;;; nil?
 (defun nil? (/ a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ;	not eq
@@ -236,3 +238,6 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj)))) 
+
+;;; Load
+(princ "Quaint 已加载。")
