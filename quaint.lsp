@@ -137,7 +137,7 @@
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
 ;;; 文字等行间距
-(defun text-spacing (d / sslist h y each)
+(defun text-spacing (/ d sslist h y each)
 	(setq sslist (ssset->sslist (ssget)))
 	(setq d 0.4)
 	(setq sslist
