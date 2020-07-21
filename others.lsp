@@ -172,16 +172,25 @@
 		(setq ll (cons (ssname setA i) ll))
 		(setq i (+ 1 i)))
 	(car (cons ll nil)))
-;;; foreachin selectset
-(defun foreachin (setA todolist / each i)
-	(setq i 0)
-	(repeat (sslength setA)
-		(setq each (ssname setA i))
-		(progn todolist)
-		(setq i (+ 1 i)))
-	(princ))
-(defun c:ccs()
-	(setq A (ssget))
-	(foreachin A (list (princ "0")))
-	(foreach A '(1 2 3 4 5) (princ 1))
-	)
+
+
+;;; wzdj
+(defun text-spacing (d / sslist h y each)
+	(setq sslist (ssset->sslist (ssget)))
+	(setq d 0.4)
+	(setq sslist
+		(vl-sort
+			sslist
+			'(lambda (ent1 ent2)
+				(>
+					(car (cdr (get-obj-att ent1 10)))
+					(car (cdr (get-obj-att ent2 10)))))))
+	(setq h (* (+ 1 d) (get-obj-att (car sslist) 40)))
+	(setq y (car (cdr (get-obj-att (car sslist) 10))))
+	(foreach each sslist 	
+		(set-obj-att
+			each
+			10
+			(cons (car (get-obj-att each 10))
+				(cons y (cons 0 nil))))
+		(setq y (- y h))))

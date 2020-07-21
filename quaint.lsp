@@ -18,6 +18,7 @@
 (defun c:wzad () (text-join*))	;;;	文字合并
 (defun c:wzap () (text-add-app*))
 (defun c:wzc () (text-copy*))
+(defun c:wzdj () (text-spacing))
 ;;;	块操作
 (defun c:bb () (block-based-zero))	;;;	以0为基点打块
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
@@ -123,20 +124,39 @@
 		(t (command "erase" obj2 ""))))
 (defun text-join* (/ obj1 obj2)
 	(text-join (car (entsel)) (car (entsel))))
-
 ;;; 文字加括号
 (defun text-add-app(obj)
 	(set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
 (defun text-add-app* ()
 	(text-add-app (car (entsel)))
 	(text-add-app*))
-
 ;;;	 文字复制
 (defun text-copy (t1 t2)
 	(set-obj-att t2 1 (get-obj-att t1 1)))
 (defun text-copy* ()
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
+;;; 文字等行间距
+(defun text-spacing (d / sslist h y each)
+	(setq sslist (ssset->sslist (ssget)))
+	(setq d 0.4)
+	(setq sslist
+		(vl-sort
+			sslist
+			'(lambda (ent1 ent2)
+				(>
+					(car (cdr (get-obj-att ent1 10)))
+					(car (cdr (get-obj-att ent2 10)))))))
+	(setq h (* (+ 1 d) (get-obj-att (car sslist) 40)))
+	(setq y (car (cdr (get-obj-att (car sslist) 10))))
+	(foreach each sslist 	
+		(set-obj-att
+			each
+			10
+			(cons (car (get-obj-att each 10))
+				(cons y (cons 0 nil))))
+		(setq y (- y h))))
+
 
 
 ;;; 图层操作
@@ -249,5 +269,7 @@
 	(car (cons ll nil)))
 
 ;;; Load
+(setvar "cmdecho" 0)
 (command "cal" nil)
+(setvar "cmdecho" 1)
 (princ "\nQuaint 已加载。\n")
