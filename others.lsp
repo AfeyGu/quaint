@@ -70,14 +70,11 @@
 	(initget 7 "Join ")
 	(nil))
 
-(defun C:1 (/ gp)
-	(setvar "cmdecho" 0)
-	(princ "\n★改变对象颜色为红色★")
+(defun C:8 (/ gp)
+	;(setvar "cmdecho" 0)
 	(setq gp (ssget))
-	(if (/= gp nil) (command ".change" gp "" "p" "c" "1" ""))
-	(princ "\nOK")
-	(princ)
-);end defun C:1 
+	(if (/= gp nil) (command ".change" gp "" "p" "c" "8" ""))
+	(princ)) 
 
 
 
@@ -149,6 +146,10 @@
 	(set-obj-att (ssname (ssget) 0) num vl)
 	(princ))
 
+
+
+
+
 ;;;	--------------
 ;;;	函数库
 ;;;	--------------
@@ -163,3 +164,24 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj))))
+;;;	ssset->sslist
+(defun ssset->sslist (setA / i ll)
+	(setq i 0)
+	(setq ll nil)
+	(repeat (sslength setA)
+		(setq ll (cons (ssname setA i) ll))
+		(setq i (+ 1 i)))
+	(car (cons ll nil)))
+;;; foreachin selectset
+(defun foreachin (setA todolist / each i)
+	(setq i 0)
+	(repeat (sslength setA)
+		(setq each (ssname setA i))
+		(progn todolist)
+		(setq i (+ 1 i)))
+	(princ))
+(defun c:ccs()
+	(setq A (ssget))
+	(foreachin A (list (princ "0")))
+	(foreach A '(1 2 3 4 5) (princ 1))
+	)

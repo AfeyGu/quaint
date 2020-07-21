@@ -12,6 +12,7 @@
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
 (defun c:22 () (setlayer0))
+(defun c:bk () (breakatpoint))
 ;;;	文本操作
 (defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
 (defun c:wzad () (text-join*))	;;;	文字合并
@@ -238,6 +239,15 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj)))) 
+;;;	ssset->sslist
+(defun ssset->sslist (setA / i ll)
+	(setq i 0)
+	(setq ll nil)
+	(repeat (sslength setA)
+		(setq ll (cons (ssname setA i) ll))
+		(setq i (+ 1 i)))
+	(car (cons ll nil)))
 
 ;;; Load
-(princ "Quaint 已加载。")
+(command "cal" nil)
+(princ "\nQuaint 已加载。\n")
