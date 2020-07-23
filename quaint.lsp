@@ -24,7 +24,8 @@
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
 (defun c:gb () (copy-to-block))	;;;	复制为块
 (defun c:br () (random-named-block))	;;;	定义为随机命名的块
-
+;;; 图形操作
+(defun c:bk () (breakatpoint)) ;;; breakatpoint
 
 
 ;;	交选
@@ -222,7 +223,7 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;; 对象操作
+;;; 图形
 ;;; Break with First option at 1 point
 (defun breakatpoint ()
   (command "_.break" pause "_first" pause "@"))
@@ -290,6 +291,13 @@
 		(setq ll (cons (ssname setA i) ll))
 		(setq i (+ 1 i)))
 	(car (cons ll nil)))
+;;; sslist filter
+(defun sslist-filter (sslist dxf value / ll) 
+  (setq ll nil)
+  (foreach each sslist 
+    (if (= value (get-obj-att each dxf)) 
+      (setq ll (cons each ll))
+      t)))
 ;;;	-----------------------------------------------------------------------
 ;;; Load
 (setvar "cmdecho" 0)
