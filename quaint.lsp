@@ -143,12 +143,7 @@
 ;;; 文字等行间距
 (defun text-spacing (/ d sslist h y each) 
   (setq sslist (ssset->sslist (ssget)))
-  (defun moveothers (ll)
-	(cond 
-		((= nil ll) nil)
-		((= "TEXT" (get-obj-att (car ll) 0)) (cons (car ll) (moveothers (cdr ll))))
-		(t (moveothers (cdr ll)))))
-  (setq sslist (moveothers sslist))
+  (setq sslist (sslist-filter sslist 0 "TEXT"))
   (setq d (if (setq d (getreal "输入行间距<defeat=0.4>：")) d 0.4))
   (setq sslist (vl-sort 
                  sslist
@@ -297,7 +292,8 @@
   (foreach each sslist 
     (if (= value (get-obj-att each dxf)) 
       (setq ll (cons each ll))
-      t)))
+      t))
+  (car (cons ll nil)))
 ;;;	-----------------------------------------------------------------------
 ;;; Load
 (setvar "cmdecho" 0)

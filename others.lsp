@@ -12,7 +12,7 @@
 ;;;	图元（对象） -> 
 ;;;	对象名 -> ssname ?
 ;;;	(car (entsel))
-;;;	对象的定义数据ent -> entget
+;;;	对象的定义数据ent -> (entget (car (entsel)))
 ;;;	assoc  cdr
 ;;;	-----------------------------------------------------
 
@@ -142,10 +142,9 @@
 (defun c:catt2 () (change-att2))
 (defun change-att2 (/ num vl)
 	(setq num (getint "\nDXF:"))
-	(setq vl (getint "\n Value:"))
+	(setq vl (getstring "\n Value:"))
 	(set-obj-att (ssname (ssget) 0) num vl)
 	(princ))
-
 
 
 
@@ -172,25 +171,35 @@
 		(setq ll (cons (ssname setA i) ll))
 		(setq i (+ 1 i)))
 	(car (cons ll nil)))
-
+;;; sslist filter
+(defun sslist-filter (sslist dxf value / ll) 
+  (setq ll nil)
+  (foreach each sslist 
+    (if (= value (get-obj-att each dxf)) 
+      (setq ll (cons each ll))
+      t))
+  (car (cons ll nil)))
 
 ;;; wzdj
-(defun text-spacing (d / sslist h y each)
-	(setq sslist (ssset->sslist (ssget)))
-	(setq d 0.4)
-	(setq sslist
-		(vl-sort
-			sslist
-			'(lambda (ent1 ent2)
-				(>
-					(car (cdr (get-obj-att ent1 10)))
-					(car (cdr (get-obj-att ent2 10)))))))
-	(setq h (* (+ 1 d) (get-obj-att (car sslist) 40)))
-	(setq y (car (cdr (get-obj-att (car sslist) 10))))
-	(foreach each sslist 	
-		(set-obj-att
-			each
-			10
-			(cons (car (get-obj-att each 10))
-				(cons y (cons 0 nil))))
-		(setq y (- y h))))
+(defun text-spacing (/ d sslist h y each) 
+  (setq sslist (ssset->sslist (ssget)))
+  (setq sslist (sslist-filter sslist 0 "TEXT"))
+  (setq d (if (setq d (getreal "输入行间距<defeat=0.4>：")) d 0.4))
+  (setq sslist (vl-sort 
+                 sslist
+                 '(lambda (ent1 ent2) 
+                    (> 
+                      (car (cdr (get-obj-att ent1 10)))
+                      (car (cdr (get-obj-att ent2 10)))))))
+  (setq h (* (+ 1 d) (get-obj-att (car sslist) 40)))
+  (setq y (car (cdr (get-obj-att (car sslist) 10))))
+  (foreach each sslist 
+    (set-obj-att 
+      each
+      10
+      (cons (car (get-obj-att each 10)) 
+            (cons y (cons 0 nil))))
+    (setq y (- y h)))
+  (princ))
+  
+  
