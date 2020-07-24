@@ -237,10 +237,11 @@
 
 ;;;	-----------------------------------------------------------------------
 ;;;	改变颜色
-(defun C:8 (/ gp)
+(defun C:8 (/ gp co)
 	;(setvar "cmdecho" 0)
 	(setq gp (ssget))
-	(if (/= gp nil) (command ".change" gp "" "p" "c" "8" ""))
+	(setq co (if (= "" (setq co (getstring "输入颜色："))) "8" co))
+	(if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
 	(princ))
 (defun C:88 (/ gp)
 	;(setvar "cmdecho" 0)
