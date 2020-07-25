@@ -11,7 +11,7 @@
 ;;;	属性
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-(defun c:22 () (setlayer0))
+(defun c:22 () (setlayer0))	;;; 设置当前图层为0
 (defun c:bk () (breakatpoint))
 ;;;	文本操作
 (defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
