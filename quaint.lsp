@@ -302,7 +302,9 @@
   (car (cons ll nil)))
 ;;;	-----------------------------------------------------------------------
 ;;; Load
+(defun c:quaint () (load "quaint.lsp"))
 (setvar "cmdecho" 0)
 (command "cal" nil)
 (setvar "cmdecho" 1)
 (princ "\nQuaint “—º”‘ÿ°£\n")
+(princ)
