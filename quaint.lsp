@@ -1,36 +1,36 @@
-;;;	åˆ«å
-;;;	é€‰æ‹©
+;;;	±ğÃû
+;;;	Ñ¡Ôñ
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
-;;;	è§†å£
-(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 æ”¹å˜è§†å£æ•°é‡
+;;;	ÊÓ¿Ú
+(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 ¸Ä±äÊÓ¿ÚÊıÁ¿
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-(defun c:ji () (calc-text))	;;;	è®¡ç®—textå†…å®¹
-;;;	å±æ€§
+(defun c:ji () (calc-text))	;;;	¼ÆËãtextÄÚÈİ
+;;;	ÊôĞÔ
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-(defun c:22 () (setlayer0))	;;; è®¾ç½®å½“å‰å›¾å±‚ä¸º0
+(defun c:22 () (setlayer0))	;;; ÉèÖÃµ±Ç°Í¼²ãÎª0
 (defun c:bk () (breakatpoint))
-;;;	æ–‡æœ¬æ“ä½œ
-(defun c:a1 () (align-textangle))	;;;	æ–‡å­—æ—‹è½¬æŒ‡å®šè§’åº¦
-(defun c:wzad () (text-join*))	;;;	æ–‡å­—åˆå¹¶
+;;;	ÎÄ±¾²Ù×÷
+(defun c:a1 () (align-textangle))	;;;	ÎÄ×ÖĞı×ªÖ¸¶¨½Ç¶È
+(defun c:wzad () (text-join*))	;;;	ÎÄ×ÖºÏ²¢
 (defun c:wzap () (text-add-app*))
 (defun c:wzc () (text-copy*))
 (defun c:wzdj () (text-spacing))
-;;;	å—æ“ä½œ
-(defun c:bb () (block-based-zero))	;;;	ä»¥0ä¸ºåŸºç‚¹æ‰“å—
-(defun c:sbil () (search-block-inlayer*))	;;;	é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—
-(defun c:gb () (copy-to-block))	;;;	å¤åˆ¶ä¸ºå—
-(defun c:br () (random-named-block))	;;;	å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
-;;; å›¾å½¢æ“ä½œ
+;;;	¿é²Ù×÷
+(defun c:bb () (block-based-zero))	;;;	ÒÔ0Îª»ùµã´ò¿é
+(defun c:sbil () (search-block-inlayer*))	;;;	Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é
+(defun c:gb () (copy-to-block))	;;;	¸´ÖÆÎª¿é
+(defun c:br () (random-named-block))	;;;	¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
+;;; Í¼ĞÎ²Ù×÷
 (defun c:bk () (breakatpoint)) ;;; breakatpoint
 
 
-;;	äº¤é€‰
-;;	å¾…åŠ å…¥ç©ºé›†åˆ¤æ–­
-;;	è§£å†³é€‰æ‹©å®Œä¸æ˜¾ç¤ºçš„é—®é¢˜
+;;	½»Ñ¡
+;;	´ı¼ÓÈë¿Õ¼¯ÅĞ¶Ï
+;;	½â¾öÑ¡ÔñÍê²»ÏÔÊ¾µÄÎÊÌâ
 (defun c:xselect (/ A B intersection)
 	(setq A (ssget) B (ssget))
 	(defun intersection (/ C i)
@@ -48,28 +48,28 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;;	é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—  
-;;; éœ€è¦ç”¨list, ä½¿ç”¨`ä¸è¡Œ
+;;;	Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é  
+;;; ĞèÒªÓÃlist, Ê¹ÓÃ`²»ĞĞ
 (defun search-block-inlayer (layer)
 	(sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
 (defun search-block-inlayer* ()
 	(princ "\n Select layer:")
 	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
-;;;	å¤åˆ¶ä¸ºå—
+;;;	¸´ÖÆÎª¿é
 (defun copy-to-block (/ A)
 	(setq A (ssget))
-	(command "copybase" (getpoint "æŒ‡å®šåŸºç‚¹ï¼š") A "")
+	(command "copybase" (getpoint "Ö¸¶¨»ùµã£º") A "")
 	(command "pasteblock")
 	(princ))
-;;;	å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
+;;;	¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
 (defun random-named-block (/ A p)
 	(setq A (ssget))
-	(setq p (getpoint "æŒ‡å®šåŸºç‚¹ï¼š"))
+	(setq p (getpoint "Ö¸¶¨»ùµã£º"))
 	(command "copybase" p A "")
 	(command "pasteblock" p)
 	(command "erase" A "")
 	(princ))
-;;;	ä»¥0ä¸ºåŸºç‚¹æ‰“å—
+;;;	ÒÔ0Îª»ùµã´ò¿é
 (defun block-based-zero (/ A p)
 	(setq A (ssget))
 	(setq p (list 0 0 0))
@@ -80,9 +80,9 @@
 ;;;	-----------------------------------------------------------------------
 
 ;;;	-----------------------------------------------------------------------
-;;; å°†æ–‡å­—æ—‹è½¬è‡³æ‰€é€‰è§’åº¦
-;;;	50-è§’åº¦ï¼Œ51-å€¾æ–œè§’åº¦
-;;;	TODOï¼šé€‰æ‹©å¯¹è±¡
+;;; ½«ÎÄ×ÖĞı×ªÖÁËùÑ¡½Ç¶È
+;;;	50-½Ç¶È£¬51-ÇãĞ±½Ç¶È
+;;;	TODO£ºÑ¡Ôñ¶ÔÏó
 (defun align-textangle (/ A B i change-angle)
 	(defun change-angle (new-rad ent-data)
 		(entmod (subst
@@ -90,14 +90,14 @@
 				(assoc 50 ent-data)
 				ent-data)))
 	(setq A (ssget))
-	(setq B (getangle "æŒ‡å®šç¬¬ä¸€ç‚¹:"))
+	(setq B (getangle "Ö¸¶¨µÚÒ»µã:"))
 	(setq i 0)
 	(repeat (sslength A)
 		(progn
 			(change-angle B (entget (ssname A i)))
 			(setq i (1+ i)))))
 
-;;; è®¡ç®—è¡¨è¾¾å¼å€¼
+;;; ¼ÆËã±í´ïÊ½Öµ
 ;;;	add setting of accuracy 
 (defun calc-text (/ A i e text text0 text1 cutstr)
 	(setq A (ssget))
@@ -117,7 +117,7 @@
 				(strcat e text1 "=" (rtos (cal text) 2 2)))
 			(setq i (1+ i)))))
 
-;;; æ–‡å­—åˆå¹¶
+;;; ÎÄ×ÖºÏ²¢
 (defun text-join (obj1 obj2)
 	(set-obj-att
 		obj1
@@ -128,23 +128,23 @@
 		(t (command "erase" obj2 ""))))
 (defun text-join* (/ obj1 obj2)
 	(text-join (car (entsel)) (car (entsel))))
-;;; æ–‡å­—åŠ æ‹¬å·
+;;; ÎÄ×Ö¼ÓÀ¨ºÅ
 (defun text-add-app(obj)
 	(set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
 (defun text-add-app* ()
 	(text-add-app (car (entsel)))
 	(text-add-app*))
-;;;	 æ–‡å­—å¤åˆ¶
+;;;	 ÎÄ×Ö¸´ÖÆ
 (defun text-copy (t1 t2)
 	(set-obj-att t2 1 (get-obj-att t1 1)))
 (defun text-copy* ()
 	(text-copy (car (entsel)) (car (entsel)))
 	(princ))
-;;; æ–‡å­—ç­‰è¡Œé—´è·
+;;; ÎÄ×ÖµÈĞĞ¼ä¾à
 (defun text-spacing (/ d sslist h y each) 
   (setq sslist (ssset->sslist (ssget)))
   (setq sslist (sslist-filter sslist 0 "TEXT"))
-  (setq d (if (setq d (getreal "è¾“å…¥è¡Œé—´è·<defeat=0.4>ï¼š")) d 0.4))
+  (setq d (if (setq d (getreal "ÊäÈëĞĞ¼ä¾à<defeat=0.4>£º")) d 0.4))
   (setq sslist (vl-sort 
                  sslist
                  '(lambda (ent1 ent2) 
@@ -161,10 +161,8 @@
             (cons y (cons 0 nil))))
     (setq y (- y h)))
   (princ))
-;;;	popp littler num
-(defun c:popp () 
-  (princ "POPP ")
-  (littlefilter))
+;;;	pop littler num
+(defun c:popp () (littlefilter))
 (defun littlefilter ()
   (setq ll (ssset->sslist (ssget)))
   (setq num (getint "Num:"))
@@ -179,13 +177,13 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;; å›¾å±‚æ“ä½œ
-;;; è®¾ç½®å½“å‰å›¾å±‚ä¸º0
+;;; Í¼²ã²Ù×÷
+;;; ÉèÖÃµ±Ç°Í¼²ãÎª0
 (defun setlayer0 ()
 	(setvar "clayer" "0")
 	;(command "-layer" "s" "0" "")
 	(princ))
-;;; å…³é—­å…¶ä»–
+;;; ¹Ø±ÕÆäËû
 (Defun C:toffotherlayer (/ SS CNT LAY LAYLST VAL)
   (setvar "cmdecho" 0)
   (if (not (setq SS (ssget "i")))
@@ -207,11 +205,11 @@
       (command "")))
   (setvar "cmdecho" 1)
   (princ))
-;;; å›¾å±‚å…¨å¼€
+;;; Í¼²ãÈ«¿ª
 (DEFUN C:openalllayer()
 	(COMMAND "-LAYER" "T" "*" "ON" "*" "")
 	(princ))
-;;; å…³é—­å›¾å±‚
+;;; ¹Ø±ÕÍ¼²ã
 (Defun C:tofflayer (/ SS CNT LAY LAYLST VAL CLAYER)
   (setvar "cmdecho" 0)
   (setq CLAYER (getvar "CLAYER"))
@@ -240,7 +238,7 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;; å›¾å½¢
+;;; Í¼ĞÎ
 ;;; Break with First option at 1 point
 (defun breakatpoint ()
   (command "_.break" pause "_first" pause "@"))
@@ -249,23 +247,18 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;;	æ”¹å˜é¢œè‰²
+;;;	¸Ä±äÑÕÉ«
 (defun C:8 (/ gp co)
 	;(setvar "cmdecho" 0)
 	(setq gp (ssget))
-	(setq co (if (= "" (setq co (getstring "è¾“å…¥é¢œè‰²ï¼š"))) "8" co))
+	(setq co (if (= "" (setq co (getstring "ÊäÈëÑÕÉ«£º"))) "ByLayer" co))
 	(if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
 	(princ))
-(defun C:88 (/ gp)
-	;(setvar "cmdecho" 0)
-	(setq gp (ssget))
-	(if (/= gp nil) (command ".change" gp "" "p" "c" "ByLayer" ""))
-	(princ))
-;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å±æ€§
+;;; ²éÑ¯ËùÑ¡¶ÔÏóÊôĞÔ
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
 	(princ))
-;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å¯¹åº”å±æ€§	
+;;; ²éÑ¯ËùÑ¡¶ÔÏó¶ÔÓ¦ÊôĞÔ	
 (defun get-att (/ num)
 	(setq num (getint "\nDXF:"))
 	(princ (get-obj-att (ssname (ssget) 0) num))
@@ -280,7 +273,7 @@
 
 
 ;;;	-----------------------------------------------------------------------
-;;;	å‡½æ•°åº“
+;;;	º¯Êı¿â
 ;;; nil?
 (defun nil? (/ a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ;	not eq
@@ -319,5 +312,5 @@
 (setvar "cmdecho" 0)
 (command "cal" nil)
 (setvar "cmdecho" 1)
-(princ "\nQuaint å·²åŠ è½½ã€‚\n")
+(princ "\nQuaint ÒÑ¼ÓÔØ¡£\n")
 (princ)
