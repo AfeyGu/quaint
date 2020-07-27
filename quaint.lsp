@@ -161,6 +161,19 @@
             (cons y (cons 0 nil))))
     (setq y (- y h)))
   (princ))
+;;;	pop littler num
+(defun c:pop () 
+  (princ "POP ")
+  (littlefilter))
+(defun littlefilter ()
+  (setq ll (ssset->sslist (ssget)))
+  (setq num (getint "Num:"))
+  (setq A (ssadd))
+  (setq ll (sslist-filter ll 0 "TEXT"))
+  (foreach each ll
+    (if (< (atoi (get-obj-att each 1)) num) (ssadd each A) t))
+  (sssetfirst nil A)
+  (princ))
 ;;;	-----------------------------------------------------------------------
 
 
