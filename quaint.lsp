@@ -275,7 +275,7 @@
 ;;;	-----------------------------------------------------------------------
 ;;;	º¯Êý¿â
 ;;; nil?
-(defun nil? (/ a) (= nil a))
+(defun nil? (a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ;	not eq
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
