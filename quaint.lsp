@@ -254,6 +254,11 @@
 	(setq co (if (= "" (setq co (getstring "输入颜色："))) "ByLayer" co))
 	(if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
 	(princ))
+(defun C:88 (/ gp co) ;设置为灰色
+	;(setvar "cmdecho" 0)
+	(setq gp (ssget))
+	(if (/= gp nil) (command ".change" gp "" "p" "c" 8 ""))
+	(princ))
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
