@@ -15,3 +15,9 @@ send %rr%
 #IfWinActive , ahk_exe acad.exe
 	XButton1::send p
 	F1::F8
+
+#IfWinActive , ahk_exe ConEmu64.exe
+	XButton1::send )
+
+;;CapsLock & XButton1::WinMinimize,A 
+
