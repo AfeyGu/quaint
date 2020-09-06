@@ -16,14 +16,19 @@
 ;;;	文本操作
 (defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
 (defun c:wzad () (text-join*))	;;;	文字合并
-(defun c:wzap () (text-add-app*))
+(defun c:aq () (text-add-app*))
 (defun c:wzc () (text-copy*))
 (defun c:wzdj () (text-spacing))
+(defun c:jj () (calc-steel-area))  ;;; 计算配筋面积
+(defun c:wzzz() (select-matched-text)) ;;; 通过正则选择文字
 ;;;	块操作
 (defun c:bb () (block-based-zero))	;;;	以0为基点打块
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
 (defun c:gb () (copy-to-block))	;;;	复制为块
 (defun c:br () (random-named-block))	;;;	定义为随机命名的块
+(defun c:bg () (command "REFSET" "R"))
+(defun c:bf () (command "REFSET" "A"))
+(defun c:rs () (command "REFCLOSE" "S"))
 ;;; 图形操作
 (defun c:bk () (breakatpoint)) ;;; breakatpoint
 
@@ -79,7 +84,11 @@
 	(princ))
 ;;;	-----------------------------------------------------------------------
 
-;;;	-----------------------------------------------------------------------
+
+
+
+
+;;;	文字操作 --------------------------------------------------------------
 ;;; 将文字旋转至所选角度
 ;;;	50-角度，51-倾斜角度
 ;;;	TODO：选择对象
@@ -172,12 +181,61 @@
     (if (< (atoi (get-obj-att each 1)) num) (ssadd each A) t))
   (sssetfirst nil A)
   (princ))
+;;; 搜索相同内容字符
+(defun c:sszf(/ A s)
+	(princ "Input:\n")
+	(setq s (get-obj-att (ssname (ssget) 0) 1))
+	(princ "Input Area:")
+	(setq A (ssset->sslist (ssget)))
+	(setq A (sslist-filter A 1 s))
+	(sssetfirst nil (sslist->ssset A))
+	(princ))
+;;; wzzz
+;;; 查找符合条件内容的文字
+(defun select-matched-text(/ Pattern A)
+	(setq A (ssset->sslist (ssget)))
+	(setq A (sslist-filter A 0 "TEXT")) ; 生成文字的选择列表
+  (princ "Input Pattern:\n")
+  (setq Pattern (read-line))
+  (defun selecter(A)
+    (cond ((nil? A) nil)
+      ((test (get-obj-att (car A) 1) Pattern) (cons (car A) (selecter (cdr A))))
+      (t (selecter (cdr A)))))
+  (sssetfirst nil (sslist->ssset (selecter A))))
+;;; wzth
+;;; 替换匹配内容的文本
+(defun c:wzth() (replace-matched-text))
+(defun replace-matched-text(/ Pattern sslist str)
+	(setq sslist (ssset->sslist (ssget)))
+	(setq sslist (sslist-filter sslist 0 "TEXT")) ; 生成文字的选择列表
+  (princ "Input Pattern:\n")
+  (setq Pattern (read-line))
+  (princ "Input Replace string:")
+  (setq str (read-line))
+  (foreach each sslist 
+    (set-obj-att each 1 (replace (get-obj-att each 1) str Pattern)))
+)
+;;; 计算配筋面积
+(defun calc-steel-area (/ sslist)
+  (setq sslist (ssset->sslist (ssget)))
+  (setq sslist (sslist-filter sslist 0 "TEXT"))
+  (cal 
+    (replace* 
+      (get-obj-att (car sslist) 1)
+      (list "$1" " (/) " 
+            "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
+            "" "[0-9]+/[0-9]+" 
+            "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"
+      )
+    )
+  )
+)
 ;;;	-----------------------------------------------------------------------
 
 
 
-;;;	-----------------------------------------------------------------------
-;;; 图层操作
+
+;;; 图层操作 ---------------------------------------------------------------
 ;;; 设置当前图层为0
 (defun setlayer0 ()
 	(setvar "clayer" "0")
@@ -282,6 +340,10 @@
 ;;; nil?
 (defun nil? (a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ;	not eq
+;;; princs
+(defun princs (clist)
+	(foreach each clist (princ each))
+	(princ))
 ;;;	get attribute of object
 (defun get-obj-att (Obj num)
 	(cdr (assoc num (entget Obj))))
@@ -291,10 +353,6 @@
 			(cons num att)
 			(assoc num (entget Obj))
 			(entget Obj))))
-;;; princs
-(defun princs (clist)
-	(foreach each clist (princ each))
-	(princ))
 ;;;	ssset->sslist
 (defun ssset->sslist (setA / i ll)
 	(setq i 0)
@@ -303,7 +361,19 @@
 		(setq ll (cons (ssname setA i) ll))
 		(setq i (+ 1 i)))
 	(car (cons ll nil)))
+;;; sslist->ssset
+;;; (sssetfirst nil (sslist->ssset (ssset->sslist (ssget))))
+(defun sslist->ssset(sslist / ssset)
+  (setq ssset (ssadd))
+  (defun ssiter (sslist)
+    (cond ((nil? sslist) nil)
+      (t (progn (ssadd (car sslist) ssset) (ssiter (cdr sslist))))
+    ))
+  (ssiter sslist)
+  return ssset)
 ;;; sslist filter
+;;; 根据某一组码过滤ssslist，返回符合条件的内容
+;;; e.g. (sslist-filter sslist 0 "TEXT")  过滤不是"TEXT"类型的对象
 (defun sslist-filter (sslist dxf value / ll) 
   (setq ll nil)
   (foreach each sslist 
@@ -311,6 +381,50 @@
       (setq ll (cons each ll))
       t))
   (car (cons ll nil)))
+;;; regex 正则 --------------------------------------------------------------
+;;; 注：\d 要写成\\d
+(setq Global 1)
+(setq IgnoreCase 1)
+;;; replace 方法
+(defun replace (Str1 Str2 Pattern / nstr) 
+  (setq reg (vlax-create-object "Vbscript.RegExp"))
+  (vlax-put-property reg "IgnoreCase" IgnoreCase)
+  (vlax-put-property reg "Global" Global)
+  (vlax-put-property reg "Pattern" Pattern)
+  (setq nstr (vlax-invoke-method reg "Replace" Str1 Str2))
+  (vlax-release-object reg)
+  return
+  nstr)
+;;; replace* 方法
+(defun replace* (str alist) 
+  (cond 
+    ((nil? alist) str)
+    ((nil? (cdr alist)) nil)
+    (t (replace* (replace str (car alist) (cadr alist)) (cddr alist)))))
+;;; execute 方法
+;;; 列出匹配项 位置，长度，内容
+(defun execute (Str1 Pattern / nstr each l) 
+  (setq reg (vlax-create-object "Vbscript.RegExp"))
+  (vlax-put-property reg "IgnoreCase" IgnoreCase)
+  (vlax-put-property reg "Global" Global)
+  (vlax-put-property reg "Pattern" Pattern)
+  (setq nstr (vlax-invoke-method reg "Execute" Str1))
+  (vlax-release-object reg)
+  (vlax-for each 
+            nstr
+            (setq pos (vlax-get-property each "FirstIndex")
+                  len (vlax-get-property each "Length")
+                  str (vlax-get-property each "value"))
+            (setq l (cons (list pos len str) l)))
+  return l)
+;;; test 方法
+(defun test (Str1 Pattern / nstr) 
+  (setq reg (vlax-create-object "Vbscript.RegExp"))
+  (vlax-put-property reg "IgnoreCase" IgnoreCase)
+  (vlax-put-property reg "Pattern" Pattern)
+  (setq nstr (eq :vlax-true (vlax-invoke-method reg "Test" Str1)))
+  (vlax-release-object reg)
+  return nstr)
 ;;;	-----------------------------------------------------------------------
 ;;; Load
 (defun c:quaint () (load "quaint.lsp"))
