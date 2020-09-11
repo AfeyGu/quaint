@@ -21,6 +21,7 @@
 (defun c:wzdj () (text-spacing))
 (defun c:jj () (calc-steel-area))  ;;; 计算配筋面积
 (defun c:wzzz() (select-matched-text)) ;;; 通过正则选择文字
+(defun c:rws() (rewrite-steel*)) ;;; 重写原位标注钢筋写法
 ;;;	块操作
 (defun c:bb () (block-based-zero))	;;;	以0为基点打块
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
@@ -225,11 +226,48 @@
       (list "$1" " (/) " 
             "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
             "" "[0-9]+/[0-9]+" 
-            "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"
-      )
-    )
-  )
-)
+            "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
+;;; 调整原位标注写法
+(defun rewrite-steel*(/ sslist)
+  (defun rewrite (str)
+    (if (test str "^([ ]?[0-9]{1,2}%%132[0-9]{1,2}[ ]?[+/])+[ ]?[0-9]{1,2}%%132[0-9]{1,2}$") 
+      (rewrite-steel str)
+      str))
+  (princ "选择对象：")
+  (setq sslist (ssset->sslist (ssget)))
+  (setq sslist (sslist-filter sslist 0 "TEXT"))
+  (foreach each sslist
+    (set-obj-att each 1 (rewrite (get-obj-att each 1)))
+    (princ (rewrite (get-obj-att each 1)))))
+;;; rewrite steel
+;;; (rewrite-steel "2%%13216+2%%13220 / 2%%13220") -> "4%%13220+2%%13216 4/2"
+(defun rewrite-steel(strr / prefix prefixl suffix link linkadd steellist addeach)
+  (setq str strr) ; 是否必要
+  (defun linkadd (alist str)
+    (cond ((= nil (cdr alist)) (car alist))
+      (t (strcat (itoa (cal (car alist))) str (linkadd (cdr alist) str)))))
+  (defun link (alist str)
+    (cond ((= nil (cdr alist)) (car alist))
+      (t (strcat (car alist) str (link (cdr alist) str)))))
+  (setq suffix (linkadd (execute- (replace str "" "%%132[123][245680]")  "[0-9+?]+") "/"))
+  ;(setq steellist (list "32" "28" "25" "22" "20" "18" "16" "14" "12"))
+  (setq steellist (list "12" "14" "16" "18" "20" "22" "25" "28" "32"))
+  (defun addeach (alist) 
+    (cond 
+      ((nil? alist) 0)
+      (t (+ (atoi (car alist)) (addeach (cdr alist))))))
+  (foreach each steellist 
+    (setq str strr) ; 是否必要
+    (if (test str (strcat "%%132" each))
+      (setq prefixl (cons 
+      (strcat 
+        (itoa (addeach (execute- str (strcat "[0-9]{1,2}(?=%%132" each ")"))))
+        "%%132" each)
+      prefixl))
+      (pass)
+    ))
+  (setq prefix (link prefixl "+"))
+  (strcat prefix " " suffix))
 ;;;	-----------------------------------------------------------------------
 
 
@@ -340,6 +378,8 @@
 ;;; nil?
 (defun nil? (a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ;	not eq
+(defun self (a) return a)
+(defun pass () return nil)
 ;;; princs
 (defun princs (clist)
 	(foreach each clist (princ each))
@@ -386,24 +426,23 @@
 (setq Global 1)
 (setq IgnoreCase 1)
 ;;; replace 方法
-(defun replace (Str1 Str2 Pattern / nstr) 
+;;; 列出匹配项 位置，长度，内容
+(defun replace (Str1 Str2 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
   (vlax-put-property reg "Global" Global)
   (vlax-put-property reg "Pattern" Pattern)
   (setq nstr (vlax-invoke-method reg "Replace" Str1 Str2))
   (vlax-release-object reg)
-  return
-  nstr)
+  return nstr)
 ;;; replace* 方法
 (defun replace* (str alist) 
   (cond 
     ((nil? alist) str)
     ((nil? (cdr alist)) nil)
     (t (replace* (replace str (car alist) (cadr alist)) (cddr alist)))))
-;;; execute 方法
-;;; 列出匹配项 位置，长度，内容
-(defun execute (Str1 Pattern / nstr each l) 
+;;; Execute 方法
+(defun execute (Str1 Pattern / nstr each l pos len str reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
   (vlax-put-property reg "Global" Global)
@@ -416,15 +455,30 @@
                   len (vlax-get-property each "Length")
                   str (vlax-get-property each "value"))
             (setq l (cons (list pos len str) l)))
-  return l)
+  (reverse l))
+;;; execute- 方法
+;;；生成只有匹配结果的列表
+(defun execute- (Str1 Pattern / nstr each l reg) 
+  (setq reg (vlax-create-object "Vbscript.RegExp"))
+  (vlax-put-property reg "IgnoreCase" IgnoreCase)
+  (vlax-put-property reg "Global" Global)
+  (vlax-put-property reg "Pattern" Pattern)
+  (setq nstr (vlax-invoke-method reg "Execute" Str1))
+  (vlax-release-object reg)
+  (vlax-for each 
+            nstr
+            (setq str (vlax-get-property each "value"))
+            (setq l (cons str l)))
+  (reverse l))
 ;;; test 方法
-(defun test (Str1 Pattern / nstr) 
+(defun test (Str1 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
   (vlax-put-property reg "Pattern" Pattern)
   (setq nstr (eq :vlax-true (vlax-invoke-method reg "Test" Str1)))
   (vlax-release-object reg)
   return nstr)
+
 ;;;	-----------------------------------------------------------------------
 ;;; Load
 (defun c:quaint () (load "quaint.lsp"))
