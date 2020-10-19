@@ -7,21 +7,24 @@
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-(defun c:ji () (calc-text))	;;;	计算text内容
 ;;;	属性
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
 (defun c:22 () (setlayer0))	;;; 设置当前图层为0
-(defun c:bk () (breakatpoint))
 ;;;	文本操作
 (defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
 (defun c:wzad () (text-join*))	;;;	文字合并
 (defun c:aq () (text-add-app*))
 (defun c:wzc () (text-copy*))
 (defun c:wzdj () (text-spacing))
+(defun c:ji () (calc-text))	;;;	计算text内容
+(defun c:jjj() (withclose "osmode" 0 calc-steel-area*)) ;;; 计算配筋面积并记录
 (defun c:jj () (calc-steel-area))  ;;; 计算配筋面积
 (defun c:wzzz() (select-matched-text)) ;;; 通过正则选择文字
+(defun c:wzth() (replace-matched-text))
 (defun c:rws() (rewrite-steel*)) ;;; 重写原位标注钢筋写法
+(defun c:pop () (littlefilter)) ;;; Pop littler num
+(defun c:ppp() (littlefilter*)) ;;; Pop littler num plus
 ;;;	块操作
 (defun c:bb () (block-based-zero))	;;;	以0为基点打块
 (defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
@@ -31,8 +34,8 @@
 (defun c:bf () (command "REFSET" "A"))
 (defun c:rs () (command "REFCLOSE" "S"))
 ;;; 图形操作
-(defun c:bk () (breakatpoint)) ;;; breakatpoint
-
+(defun c:kk () (breakatpoint)) ;;; breakatpoint
+(defun c:k () (command "_.break" pause "f"))
 
 ;;	交选
 ;;	待加入空集判断
@@ -147,10 +150,19 @@
 ;;;	 文字复制
 (defun text-copy (t1 t2)
 	(set-obj-att t2 1 (get-obj-att t1 1)))
-(defun text-copy* ()
-	(text-copy (car (entsel)) (car (entsel)))
+(defun text-copy* (/ tester es)
+  (defun tester () 
+    (setq es (car (entsel)))
+    (if (= "TEXT" (get-obj-att es 0))
+      es
+      (progn 
+        (princ "重新选取：")
+        (tester)
+        )))
+	(text-copy (tester) (tester))
 	(princ))
-;;; 文字等行间距
+;;; 文字等行间距 
+;;; 组码11为0 则改10 ，否则改11
 (defun text-spacing (/ d sslist h y each) 
   (setq sslist (ssset->sslist (ssget)))
   (setq sslist (sslist-filter sslist 0 "TEXT"))
@@ -171,17 +183,37 @@
             (cons y (cons 0 nil))))
     (setq y (- y h)))
   (princ))
-;;;	pop littler num
-(defun c:popp () (littlefilter))
-(defun littlefilter ()
+;;;	Pop littler num
+(defun littlefilter (/ A ll num)
   (setq ll (ssset->sslist (ssget)))
   (setq num (getint "Num:"))
   (setq A (ssadd))
   (setq ll (sslist-filter ll 0 "TEXT"))
   (foreach each ll
-    (if (< (atoi (get-obj-att each 1)) num) (ssadd each A) t))
+    (if (<= (atoi (get-obj-att each 1)) num) (ssadd each A) t))
   (sssetfirst nil A)
   (princ))
+;;; Pop littler num plus
+(defun littlefilter*(/ getlist int A ll c)
+  (setq ll (ssset->sslist (ssget)))
+  (setq ll (sslist-filter ll 0 "TEXT"))
+  (defun getlist()
+    (setq int (getint "Int:"))
+    (cond ((nil? int) nil)
+      (t (cons int (getlist)))))
+  (setq int (reverse (getlist)))
+  (setq A (ssadd)) ; 大于最大的红色
+  (foreach each ll
+      (if (> (atoi (get-obj-att each 1)) (car int)) (ssadd each A) t))
+  (command ".CHPROP" A "" "c" 1 "")
+  (setq c 2) ; 剩下的依次改颜色
+  (foreach eachint int
+    (setq A (ssadd))
+    (foreach each ll
+     (if (<= (atoi (get-obj-att each 1)) eachint) (ssadd each A) t))
+    (princ (sslength A))
+    (command ".CHPROP" A "" "c" c "")
+    (setq c (+ 1 c))))
 ;;; 搜索相同内容字符
 (defun c:sszf(/ A s)
 	(princ "Input:\n")
@@ -202,10 +234,12 @@
     (cond ((nil? A) nil)
       ((test (get-obj-att (car A) 1) Pattern) (cons (car A) (selecter (cdr A))))
       (t (selecter (cdr A)))))
-  (sssetfirst nil (sslist->ssset (selecter A))))
+  (setq A (selecter A))
+  (sssetfirst nil (sslist->ssset A))
+  (princ "找到 ")
+  (length A))
 ;;; wzth
 ;;; 替换匹配内容的文本
-(defun c:wzth() (replace-matched-text))
 (defun replace-matched-text(/ Pattern sslist str)
 	(setq sslist (ssset->sslist (ssget)))
 	(setq sslist (sslist-filter sslist 0 "TEXT")) ; 生成文字的选择列表
@@ -215,6 +249,9 @@
   (setq str (read-line))
   (foreach each sslist 
     (set-obj-att each 1 (replace (get-obj-att each 1) str Pattern)))
+  (princ "已操作 ")
+  (princ (length sslist))
+  (princ)
 )
 ;;; 计算配筋面积
 (defun calc-steel-area (/ sslist)
@@ -227,6 +264,50 @@
             "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
             "" "[0-9]+/[0-9]+" 
             "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
+;;; 计算配筋面积并记录
+(defun calc-steel-area* (/ sslist area calcarea calc) 
+  (setvar "cmdecho" 0)
+  (setq sslist (ssset->sslist (ssget)))
+  (setq sslist (sslist-filter sslist 0 "TEXT"))
+  (defun filter (text) (test text "^[0-9\(]+%%132[0-9]+"))
+  (defun calc(str)
+    (cal 
+      (replace* 
+        str
+        (list "$1" " (/) " 
+              "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
+              "" "[0-9]+/[0-9]+"
+              "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"
+        )
+      )
+    ))
+  (defun calcarea (str / areaa)  ;计算面积
+    (setq areaa "")
+    (cond 
+      ((not (test str "^[\(0-9]+%%132[0-9 %;/+\(\)]+$")) nil) ; G2%%13216 之类的
+      ((and 
+          (test str "([\(0-9]+%%132[0-9\)]+[/ +]*)+")
+          (test str ";")) ; 带;的表达式
+        (foreach each (execute- str "([\(0-9]+%%132[0-9\)]+[/ +]*)+")
+          (setq areaa (strcat areaa (rtos (calc each)) "  "))))
+      ((test str "([0-9]+%%132[0-9]+[/ +]*)+") ; 单个配筋的表达式
+        (rtos (calc str)))
+      (t nil)))
+  (foreach each sslist 
+    (setq area
+      (calcarea (get-obj-att each 1)))
+    (if (and (not (= nil area)) (test (get-obj-att each 1) "%%132")) 
+      (command "text" 
+               "s"
+               "Standard"
+               "tl"
+               (get-obj-att each 10)
+               200
+               (* 57.29577951472 (get-obj-att each 50))
+               area)
+      t))
+  (setvar "cmdecho" 0)
+  (princ))
 ;;; 调整原位标注写法
 (defun rewrite-steel*(/ sslist)
   (defun rewrite (str)
@@ -244,7 +325,7 @@
 (defun rewrite-steel(strr / prefix prefixl suffix link linkadd steellist addeach)
   (setq str strr) ; 是否必要
   (defun linkadd (alist str)
-    (cond ((= nil (cdr alist)) (car alist))
+    (cond ((= nil (cdr alist)) (itoa (cal (car alist))))
       (t (strcat (itoa (cal (car alist))) str (linkadd (cdr alist) str)))))
   (defun link (alist str)
     (cond ((= nil (cdr alist)) (car alist))
@@ -344,6 +425,11 @@
 
 ;;;	-----------------------------------------------------------------------
 ;;;	改变颜色
+(defun C:7 (/ gp co) ;设置为红色
+  ;(setvar "cmdecho" 0)
+  (setq gp (ssget))
+  (if (/= gp nil) (command ".change" gp "" "p" "c" 1 ""))
+  (princ))
 (defun C:8 (/ gp co)
 	;(setvar "cmdecho" 0)
 	(setq gp (ssget))
@@ -355,6 +441,11 @@
 	(setq gp (ssget))
 	(if (/= gp nil) (command ".change" gp "" "p" "c" 8 ""))
 	(princ))
+(defun C:9 (/ gp co) ;设置为30
+  ;(setvar "cmdecho" 0)
+  (setq gp (ssget))
+  (if (/= gp nil) (command ".change" gp "" "p" "c" 30 ""))
+  (princ))
 ;;; 查询所选对象属性
 (defun search-att ()
 	(princ (entget (ssname (ssget) 0)))
@@ -421,6 +512,21 @@
       (setq ll (cons each ll))
       t))
   (car (cons ll nil)))
+;;; sslist filter plus
+(defun sslist-filter* (sslist dxf value filter / ll)
+  (setq ll nil)
+  (foreach each sslist 
+    (if (filter (get-obj-att each dxf))
+      (setq ll (cons each ll))
+      t))
+  return ll)
+;;; withclose 
+(defun withclose (mode value fun / orgvalue)
+  (setq orgvalue (getvar mode))
+  (setvar mode value)
+  (fun)
+  (setvar mode orgvalue)
+  (princ))
 ;;; regex 正则 --------------------------------------------------------------
 ;;; 注：\d 要写成\\d
 (setq Global 1)
