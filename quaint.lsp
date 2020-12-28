@@ -1,35 +1,35 @@
-;;;	别名
-;;;	选择
+;;; 别名
+;;; 选择
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
-;;;	视口
-(defun c:v0 () (ai_tiledvp 1 nil))	;;;	v0 v1 v2 v3 改变视口数量
+;;; 视口
+(defun c:v0 () (ai_tiledvp 1 nil))  ;;; v0 v1 v2 v3 改变视口数量
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-;;;	属性
+;;; 属性
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-(defun c:22 () (setlayer0))	;;; 设置当前图层为0
-;;;	文本操作
-(defun c:a1 () (align-textangle))	;;;	文字旋转指定角度
-(defun c:wzad () (text-join*))	;;;	文字合并
+(defun c:22 () (setlayer0)) ;;; 设置当前图层为0
+;;; 文本操作
+(defun c:a1 () (align-textangle)) ;;; 文字旋转指定角度
+(defun c:wzad () (text-join*))  ;;; 文字合并
 (defun c:aq () (text-add-app*))
-(defun c:wzc () (text-copy*))
+(defun c:fe () (text-copy*))
 (defun c:wzdj () (text-spacing))
-(defun c:ji () (calc-text))	;;;	计算text内容
+(defun c:ji () (calc-text)) ;;; 计算text内容
 (defun c:jjj() (withclose "osmode" 0 calc-steel-area*)) ;;; 计算配筋面积并记录
 (defun c:jj () (calc-steel-area))  ;;; 计算配筋面积
-(defun c:wzzz() (select-matched-text)) ;;; 通过正则选择文字
+(defun c:regex() (select-matched-text)) ;;; 通过正则选择文字
 (defun c:wzth() (replace-matched-text))
 (defun c:rws() (rewrite-steel*)) ;;; 重写原位标注钢筋写法
 (defun c:pop () (littlefilter)) ;;; Pop littler num
 (defun c:ppp() (littlefilter*)) ;;; Pop littler num plus
-;;;	块操作
-(defun c:bb () (block-based-zero))	;;;	以0为基点打块
-(defun c:sbil () (search-block-inlayer*))	;;;	选择图层上所有块
-(defun c:gb () (copy-to-block))	;;;	复制为块
-(defun c:br () (random-named-block))	;;;	定义为随机命名的块
+;;; 块操作
+(defun c:bb () (block-based-zero))  ;;; 以0为基点打块
+(defun c:sbil () (search-block-inlayer*)) ;;; 选择图层上所有块
+(defun c:gb () (copy-to-block)) ;;; 复制为块
+(defun c:br () (random-named-block))  ;;; 定义为随机命名的块
 (defun c:bg () (command "REFSET" "R"))
 (defun c:bf () (command "REFSET" "A"))
 (defun c:rs () (command "REFCLOSE" "S"))
@@ -37,119 +37,119 @@
 (defun c:kk () (breakatpoint)) ;;; breakatpoint
 (defun c:k () (command "_.break" pause "f"))
 
-;;	交选
-;;	待加入空集判断
-;;	解决选择完不显示的问题
+;;  交选
+;;  待加入空集判断
+;;  解决选择完不显示的问题
 (defun c:xselect (/ A B intersection)
-	(setq A (ssget) B (ssget))
-	(defun intersection (/ C i)
-		(setq C (ssadd))
-		(setq i 0)
-		(repeat (sslength B)
-			(if (/= nil (ssmemb (ssname B i) A)) (ssadd (ssname B i) C))
-			(setq i (1+ i)))
-		(setq A nil B nil)
-		(progn (sssetfirst nil C)))
-	(intersection))
+  (setq A (ssget) B (ssget))
+  (defun intersection (/ C i)
+    (setq C (ssadd))
+    (setq i 0)
+    (repeat (sslength B)
+      (if (/= nil (ssmemb (ssname B i) A)) (ssadd (ssname B i) C))
+      (setq i (1+ i)))
+    (setq A nil B nil)
+    (progn (sssetfirst nil C)))
+  (intersection))
 
 
 
 
 
-;;;	-----------------------------------------------------------------------
-;;;	选择图层上所有块  
+;;; -----------------------------------------------------------------------
+;;; 选择图层上所有块  
 ;;; 需要用list, 使用`不行
 (defun search-block-inlayer (layer)
-	(sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
+  (sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
 (defun search-block-inlayer* ()
-	(princ "\n Select layer:")
-	(search-block-inlayer (get-obj-att (car (entsel)) 8)))
-;;;	复制为块
+  (princ "\n Select layer:")
+  (search-block-inlayer (get-obj-att (car (entsel)) 8)))
+;;; 复制为块
 (defun copy-to-block (/ A)
-	(setq A (ssget))
-	(command "copybase" (getpoint "指定基点：") A "")
-	(command "pasteblock")
-	(princ))
-;;;	定义为随机命名的块
+  (setq A (ssget))
+  (command "copybase" (getpoint "指定基点：") A "")
+  (command "pasteblock")
+  (princ))
+;;; 定义为随机命名的块
 (defun random-named-block (/ A p)
-	(setq A (ssget))
-	(setq p (getpoint "指定基点："))
-	(command "copybase" p A "")
-	(command "pasteblock" p)
-	(command "erase" A "")
-	(princ))
-;;;	以0为基点打块
+  (setq A (ssget))
+  (setq p (getpoint "指定基点："))
+  (command "copybase" p A "")
+  (command "pasteblock" p)
+  (command "erase" A "")
+  (princ))
+;;; 以0为基点打块
 (defun block-based-zero (/ A p)
-	(setq A (ssget))
-	(setq p (list 0 0 0))
-	(command "copybase" p A "")
-	(command "pasteblock" p)
-	(command "erase" A "")
-	(princ))
-;;;	-----------------------------------------------------------------------
+  (setq A (ssget))
+  (setq p (list 0 0 0))
+  (command "copybase" p A "")
+  (command "pasteblock" p)
+  (command "erase" A "")
+  (princ))
+;;; -----------------------------------------------------------------------
 
 
 
 
 
-;;;	文字操作 --------------------------------------------------------------
+;;; 文字操作 --------------------------------------------------------------
 ;;; 将文字旋转至所选角度
-;;;	50-角度，51-倾斜角度
-;;;	TODO：选择对象
+;;; 50-角度，51-倾斜角度
+;;; TODO：选择对象
 (defun align-textangle (/ A B i change-angle)
-	(defun change-angle (new-rad ent-data)
-		(entmod (subst
-				(cons 50 new-rad)
-				(assoc 50 ent-data)
-				ent-data)))
-	(setq A (ssget))
-	(setq B (getangle "指定第一点:"))
-	(setq i 0)
-	(repeat (sslength A)
-		(progn
-			(change-angle B (entget (ssname A i)))
-			(setq i (1+ i)))))
+  (defun change-angle (new-rad ent-data)
+    (entmod (subst
+        (cons 50 new-rad)
+        (assoc 50 ent-data)
+        ent-data)))
+  (setq A (ssget))
+  (setq B (getangle "指定第一点:"))
+  (setq i 0)
+  (repeat (sslength A)
+    (progn
+      (change-angle B (entget (ssname A i)))
+      (setq i (1+ i)))))
 
 ;;; 计算表达式值
-;;;	add setting of accuracy 
+;;; add setting of accuracy 
 (defun calc-text (/ A i e text text0 text1 cutstr)
-	(setq A (ssget))
-	(defun cutstr (str)
-		(substr str 1 (VL-String-Search "=" str)))
-	(setq i 0)
-	(repeat (sslength A)
-		(progn
-			(setq text0 (get-obj-att (ssname A i) 1))
-			(if (= "=" (substr text0 1 1))	;;;	try to move first "="
-				(progn (setq e "=") (setq text1 (cutstr (substr text0 2)))) 
-				(progn (setq e "") (setq text1 (cutstr text0))))
-			(setq text (vl-string-Translate "xX" "**" text1))	;;;	subset x by * (not in cutstr, because we need use "xX" in strcar funcation)
-			(set-obj-att
-				(ssname A i)
-				1
-				(strcat e text1 "=" (rtos (cal text) 2 2)))
-			(setq i (1+ i)))))
+  (setq A (ssget))
+  (defun cutstr (str)
+    (substr str 1 (VL-String-Search "=" str)))
+  (setq i 0)
+  (repeat (sslength A)
+    (progn
+      (setq text0 (get-obj-att (ssname A i) 1))
+      (if (= "=" (substr text0 1 1))  ;;; try to move first "="
+        (progn (setq e "=") (setq text1 (cutstr (substr text0 2)))) 
+        (progn (setq e "") (setq text1 (cutstr text0))))
+      (setq text (vl-string-Translate "xX" "**" text1)) ;;; subset x by * (not in cutstr, because we need use "xX" in strcar funcation)
+      (set-obj-att
+        (ssname A i)
+        1
+        (strcat e text1 "=" (rtos (cal text) 2 2)))
+      (setq i (1+ i)))))
 
 ;;; 文字合并
 (defun text-join (obj1 obj2)
-	(set-obj-att
-		obj1
-		1
-		(strcat (get-obj-att obj1 1) (get-obj-att obj2 1)))
-	(cond
-		((eq obj1 obj2) nil)
-		(t (command "erase" obj2 ""))))
+  (set-obj-att
+    obj1
+    1
+    (strcat (get-obj-att obj1 1) (get-obj-att obj2 1)))
+  (cond
+    ((eq obj1 obj2) nil)
+    (t (command "erase" obj2 ""))))
 (defun text-join* (/ obj1 obj2)
-	(text-join (car (entsel)) (car (entsel))))
+  (text-join (car (entsel)) (car (entsel))))
 ;;; 文字加括号
 (defun text-add-app(obj)
-	(set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
+  (set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
 (defun text-add-app* ()
-	(text-add-app (car (entsel)))
-	(text-add-app*))
-;;;	 文字复制
+  (text-add-app (car (entsel)))
+  (text-add-app*))
+;;;  文字复制
 (defun text-copy (t1 t2)
-	(set-obj-att t2 1 (get-obj-att t1 1)))
+  (set-obj-att t2 1 (get-obj-att t1 1)))
 (defun text-copy* (/ tester es)
   (defun tester () 
     (setq es (car (entsel)))
@@ -159,8 +159,8 @@
         (princ "重新选取：")
         (tester)
         )))
-	(text-copy (tester) (tester))
-	(princ))
+  (text-copy (tester) (tester))
+  (princ))
 ;;; 文字等行间距 
 ;;; 组码11为0 则改10 ，否则改11
 (defun text-spacing (/ d sslist h y each) 
@@ -183,53 +183,75 @@
             (cons y (cons 0 nil))))
     (setq y (- y h)))
   (princ))
-;;;	Pop littler num
+;;; Pop littler num
+;;; todo: 加入范围选数的功能
 (defun littlefilter (/ A ll num)
   (setq ll (ssset->sslist (ssget)))
-  (setq num (getint "Num:"))
+  (setq num (getreal "\nNum:"))
   (setq A (ssadd))
   (setq ll (sslist-filter ll 0 "TEXT"))
+  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; 过滤掉非数字
   (foreach each ll
-    (if (<= (atoi (get-obj-att each 1)) num) (ssadd each A) t))
+    (if (<= (atof (get-obj-att each 1)) num) (ssadd each A) t))
   (sssetfirst nil A)
   (princ))
 ;;; Pop littler num plus
-(defun littlefilter*(/ getlist int A ll c)
+;;; todo 增加选择文字作为过滤对象的选项
+;;; TODO 更合理的颜色
+(setq pop-color-mode 0)
+(defun littlefilter*(/ getlist int A ll c color)
   (setq ll (ssset->sslist (ssget)))
   (setq ll (sslist-filter ll 0 "TEXT"))
+  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; 过滤掉非数字
+  (defun color (c / cc c2) ; 改颜色
+    (cond 
+      ((= pop-color-mode 0) ; 使用真彩色
+        (setq cc (hsl->rgb (* 250.0 (/ c 1.0 (length int))) 1 0.5))
+        (setq c2 (strcat (rtos (car cc)) "," (rtos (cadr cc)) "," (rtos (caddr cc))))
+        (command ".chprop" A "" "c" "t" c2 ""))
+      (t (command ".CHPROP" A "" "c" (+ c 1) "")) ; 0-9
+      ))
   (defun getlist()
-    (setq int (getint "Int:"))
+    (setq int (getreal "\nNum:")) ; 实数也行
     (cond ((nil? int) nil)
       (t (cons int (getlist)))))
-  (setq int (reverse (getlist)))
+  ;(setq int (reverse (getlist)))
+  (setq int (vl-sort (getlist) '>)) ; 从大到小排序
   (setq A (ssadd)) ; 大于最大的红色
   (foreach each ll
-      (if (> (atoi (get-obj-att each 1)) (car int)) (ssadd each A) t))
-  (command ".CHPROP" A "" "c" 1 "")
-  (setq c 2) ; 剩下的依次改颜色
+      (if (> (atof (get-obj-att each 1)) (car int)) (ssadd each A) t))
+  (color 0)
+  (setq c 1) ; 剩下的依次改颜色
   (foreach eachint int
     (setq A (ssadd))
     (foreach each ll
-     (if (<= (atoi (get-obj-att each 1)) eachint) (ssadd each A) t))
-    (princ (sslength A))
-    (command ".CHPROP" A "" "c" c "")
-    (setq c (+ 1 c))))
+     (if (<= (atof (get-obj-att each 1)) eachint) (ssadd each A) t))
+    (if (not (= 0 (sslength A)))
+      (color c))
+    (setq c (+ 1 c)))
+  (princ))
 ;;; 搜索相同内容字符
 (defun c:sszf(/ A s)
-	(princ "Input:\n")
-	(setq s (get-obj-att (ssname (ssget) 0) 1))
-	(princ "Input Area:")
-	(setq A (ssset->sslist (ssget)))
-	(setq A (sslist-filter A 1 s))
-	(sssetfirst nil (sslist->ssset A))
-	(princ))
-;;; wzzz
+  (princ "Input:\n")
+  (setq s (get-obj-att (ssname (ssget) 0) 1))
+  (princ "Input Area:")
+  (setq A (ssset->sslist (ssget)))
+  (setq A (sslist-filter A 1 s))
+  (sssetfirst nil (sslist->ssset A))
+  (princ))
+;;; regex
 ;;; 查找符合条件内容的文字
+;;; todo 添加内置匹配模式(新的匹配函数)
+(setq select-matched-text-Pattern "") ; 默认值
 (defun select-matched-text(/ Pattern A)
-	(setq A (ssset->sslist (ssget)))
-	(setq A (sslist-filter A 0 "TEXT")) ; 生成文字的选择列表
-  (princ "Input Pattern:\n")
+  (setq A (ssset->sslist (ssget)))
+  (setq A (sslist-filter A 0 "TEXT")) ; 生成文字的选择列表
+  (princ "Input Pattern <")
+  (princ select-matched-text-Pattern)
+  (princ ">:\n")
   (setq Pattern (read-line))
+  (cond ((= "" Pattern) (setq Pattern select-matched-text-Pattern))
+    (t (setq select-matched-text-Pattern Pattern))) ; 设置默认值
   (defun selecter(A)
     (cond ((nil? A) nil)
       ((test (get-obj-att (car A) 1) Pattern) (cons (car A) (selecter (cdr A))))
@@ -241,8 +263,8 @@
 ;;; wzth
 ;;; 替换匹配内容的文本
 (defun replace-matched-text(/ Pattern sslist str)
-	(setq sslist (ssset->sslist (ssget)))
-	(setq sslist (sslist-filter sslist 0 "TEXT")) ; 生成文字的选择列表
+  (setq sslist (ssset->sslist (ssget)))
+  (setq sslist (sslist-filter sslist 0 "TEXT")) ; 生成文字的选择列表
   (princ "Input Pattern:\n")
   (setq Pattern (read-line))
   (princ "Input Replace string:")
@@ -264,6 +286,45 @@
             "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
             "" "[0-9]+/[0-9]+" 
             "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
+;;; 两个配筋面积之比 （0.3）
+(defun c:lli (/ tester es calcer)
+  (defun tester () 
+    (setq es (car (entsel)))
+    (if (= "TEXT" (get-obj-att es 0))
+      es
+      (progn 
+        (princ "重新选取：")
+        (tester)
+        )))
+  (defun calcer (txt)
+    (cal 
+      (replace* 
+        (get-obj-att txt 1)
+        (list "$1" " (/) " 
+            "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
+            "" "[0-9]+/[0-9]+" 
+            "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
+  (/ (calcer (tester)) (calcer (tester))))
+;;; 转化为某一直径
+;;; todo: 转为几种直径的最优解
+(defun c:zh (/ phi tester es calcer)
+  (defun tester () 
+    (setq es (car (entsel)))
+    (if (= "TEXT" (get-obj-att es 0))
+      es
+      (progn 
+        (princ "重新选取：")
+        (tester))))
+  (defun calcer (txt)
+    (cal 
+      (replace* 
+        (get-obj-att txt 1)
+        (list "$1" " (/) " 
+            "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
+            "" "[0-9]+/[0-9]+" 
+            "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
+  (setq phi (getint "Num:"))
+  (/ (calcer (tester)) (* 3.1415926 phi phi 0.25)))
 ;;; 计算配筋面积并记录
 (defun calc-steel-area* (/ sslist area calcarea calc) 
   (setvar "cmdecho" 0)
@@ -349,7 +410,7 @@
     ))
   (setq prefix (link prefixl "+"))
   (strcat prefix " " suffix))
-;;;	-----------------------------------------------------------------------
+;;; -----------------------------------------------------------------------
 
 
 
@@ -357,9 +418,9 @@
 ;;; 图层操作 ---------------------------------------------------------------
 ;;; 设置当前图层为0
 (defun setlayer0 ()
-	(setvar "clayer" "0")
-	;(command "-layer" "s" "0" "")
-	(princ))
+  (setvar "clayer" "0")
+  ;(command "-layer" "s" "0" "")
+  (princ))
 ;;; 关闭其他
 (Defun C:toffotherlayer (/ SS CNT LAY LAYLST VAL)
   (setvar "cmdecho" 0)
@@ -384,8 +445,8 @@
   (princ))
 ;;; 图层全开
 (DEFUN C:openalllayer()
-	(COMMAND "-LAYER" "T" "*" "ON" "*" "")
-	(princ))
+  (COMMAND "-LAYER" "T" "*" "ON" "*" "")
+  (princ))
 ;;; 关闭图层
 (Defun C:tofflayer (/ SS CNT LAY LAYLST VAL CLAYER)
   (setvar "cmdecho" 0)
@@ -404,43 +465,43 @@
       (command "_.-LAYER")
       (foreach VAL LAYLST (command "_f" VAL))
       (foreach VAL LAYLST 
-	    (if (= VAL CLAYER) (command "_off" VAL "Y") (command "_off" VAL)))
+      (if (= VAL CLAYER) (command "_off" VAL "Y") (command "_off" VAL)))
       (command "")))
   (setvar "cmdecho" 1)
   (princ))
-;;;	-----------------------------------------------------------------------
+;;; -----------------------------------------------------------------------
 
 
 
 
 
-;;;	-----------------------------------------------------------------------
+;;; -----------------------------------------------------------------------
 ;;; 图形
 ;;; Break with First option at 1 point
 (defun breakatpoint ()
   (command "_.break" pause "_first" pause "@"))
-;;;	-----------------------------------------------------------------------
+;;; -----------------------------------------------------------------------
 
 
 
-;;;	-----------------------------------------------------------------------
-;;;	改变颜色
+;;; -----------------------------------------------------------------------
+;;; 改变颜色
 (defun C:7 (/ gp co) ;设置为红色
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
   (if (/= gp nil) (command ".change" gp "" "p" "c" 1 ""))
   (princ))
 (defun C:8 (/ gp co)
-	;(setvar "cmdecho" 0)
-	(setq gp (ssget))
-	(setq co (if (= "" (setq co (getstring "输入颜色："))) "ByLayer" co))
-	(if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
-	(princ))
+  ;(setvar "cmdecho" 0)
+  (setq gp (ssget))
+  (setq co (if (= "" (setq co (getstring "输入颜色："))) "ByLayer" co))
+  (if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
+  (princ))
 (defun C:88 (/ gp co) ;设置为灰色
-	;(setvar "cmdecho" 0)
-	(setq gp (ssget))
-	(if (/= gp nil) (command ".change" gp "" "p" "c" 8 ""))
-	(princ))
+  ;(setvar "cmdecho" 0)
+  (setq gp (ssget))
+  (if (/= gp nil) (command ".change" gp "" "p" "c" 8 ""))
+  (princ))
 (defun C:9 (/ gp co) ;设置为30
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
@@ -448,14 +509,14 @@
   (princ))
 ;;; 查询所选对象属性
 (defun search-att ()
-	(princ (entget (ssname (ssget) 0)))
-	(princ))
-;;; 查询所选对象对应属性	
+  (princ (entget (ssname (ssget) 0)))
+  (princ))
+;;; 查询所选对象对应属性  
 (defun get-att (/ num)
-	(setq num (getint "\nDXF:"))
-	(princ (get-obj-att (ssname (ssget) 0) num))
-	(princ))
-;;;	-----------------------------------------------------------------------
+  (setq num (getint "\nDXF:"))
+  (princ (get-obj-att (ssname (ssget) 0) num))
+  (princ))
+;;; -----------------------------------------------------------------------
 
 
 
@@ -464,34 +525,62 @@
 
 
 
-;;;	-----------------------------------------------------------------------
-;;;	函数库
+;;; -----------------------------------------------------------------------
+;;; 函数库
 ;;; nil?
 (defun nil? (a) (= nil a))
-(defun != (/ a b) (not (eq a b))) ;	not eq
+(defun != (/ a b) (not (eq a b))) ; not eq
 (defun self (a) return a)
 (defun pass () return nil)
+(defun round (num n) (if (<= n 0) (atoi (rtos num 2 n)) (atof (rtos num 2 n))))
 ;;; princs
 (defun princs (clist)
-	(foreach each clist (princ each))
-	(princ))
-;;;	get attribute of object
+  (foreach each clist (princ each))
+  (princ))
+;;; HSL->RGB
+;;; (hsl->rgb h s l) -> a list (r g b)
+(defun hsl->rgb (h s l / tc colorc q p hk rgb)
+  (setq hk (/ h 360.0))
+  (setq q (if (< l 0.5) (* l (+ 1 s)) (+ l s (- (* l s)))))
+  (setq p (- (* 2 l) q))
+  (defun tc (x)
+    (cond ((< x 0) (+ 1.0 x))
+      ((> x 1) (- x 1.0))
+      (t x)))
+  (defun colorc (x)
+    (cond ((<= x (/ 1.0 6)) (+ p (* 6 x (- q p)))) ; x<1/6
+      ((< (/ 1.0 6) x 0.5) q) ; 1/6<x<0.5
+      ((<= 0.5 x (/ 2.0 3)) (+ p (* 6 (- (/ 2.0 3) x) (- q p))))  ; 0.5<=x<=1/3
+      (t p)))
+  (cond ((= 0 s) (list (round (* 255 l) 0) (round (* 255 l) 0) (round (* 255 l) 0)))
+    (t ; 这里不能用else，会返回nil，上同
+      (list 
+        (round (* 255 (colorc (tc (+ hk (/ 1.0 3))))) 0)
+        (round (* 255 (colorc (tc hk))) 0)
+        (round (* 255 (colorc (tc (- hk (/ 1.0 3))))) 0)
+        )))
+  )
+;;; color-value
+;;; (color-value 255 255 255) -> 16777215
+(defun color-value (r g b)
+  (+ r (* 256 g) (* 65536 b)))
+;;; get attribute of object
 (defun get-obj-att (Obj num)
-	(cdr (assoc num (entget Obj))))
-;;;	set attribute of object
+  (cdr (assoc num (entget Obj))))
+;;; set attribute of object
 (defun set-obj-att (Obj num att)
-	(entmod (subst
-			(cons num att)
-			(assoc num (entget Obj))
-			(entget Obj))))
-;;;	ssset->sslist
+  (entmod (subst
+      (cons num att)
+      (assoc num (entget Obj))
+      (entget Obj))))
+;;; ssset->sslist
 (defun ssset->sslist (setA / i ll)
-	(setq i 0)
-	(setq ll nil)
-	(repeat (sslength setA)
-		(setq ll (cons (ssname setA i) ll))
-		(setq i (+ 1 i)))
-	(car (cons ll nil)))
+  (setq i 0)
+  (setq ll nil)
+  (repeat (sslength setA)
+    (setq ll (cons (ssname setA i) ll))
+    (setq i (+ 1 i)))
+  (car (cons ll nil)))
 ;;; sslist->ssset
 ;;; (sssetfirst nil (sslist->ssset (ssset->sslist (ssget))))
 (defun sslist->ssset(sslist / ssset)
@@ -513,9 +602,9 @@
       t))
   (car (cons ll nil)))
 ;;; sslist filter plus
-(defun sslist-filter* (sslist dxf value filter / ll)
+(defun sslist-filter* (sslist dxf filter / ll)
   (setq ll nil)
-  (foreach each sslist 
+  (foreach each sslist ; 应该可以改用mapcar
     (if (filter (get-obj-att each dxf))
       (setq ll (cons each ll))
       t))
@@ -528,7 +617,7 @@
   (setvar mode orgvalue)
   (princ))
 ;;; regex 正则 --------------------------------------------------------------
-;;; 注：\d 要写成\\d
+;;; 注：\d 要写成\\d (写函数时必要，cad中使用似乎不用)
 (setq Global 1)
 (setq IgnoreCase 1)
 ;;; replace 方法
@@ -563,7 +652,7 @@
             (setq l (cons (list pos len str) l)))
   (reverse l))
 ;;; execute- 方法
-;;；生成只有匹配结果的列表
+;;; 生成只有匹配结果的列表
 (defun execute- (Str1 Pattern / nstr each l reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
@@ -577,6 +666,7 @@
             (setq l (cons str l)))
   (reverse l))
 ;;; test 方法
+;;; (test string pattern)
 (defun test (Str1 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
@@ -585,7 +675,7 @@
   (vlax-release-object reg)
   return nstr)
 
-;;;	-----------------------------------------------------------------------
+;;; -----------------------------------------------------------------------
 ;;; Load
 (defun c:quaint () (load "quaint.lsp"))
 (setvar "cmdecho" 0)
