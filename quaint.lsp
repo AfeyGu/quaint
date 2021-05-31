@@ -498,6 +498,43 @@
       (command "")))
   (setvar "cmdecho" 1)
   (princ))
+;;; (exist-layer? LayerName) 判断图层是否存在
+(defun exist-layer? (LayerName)
+	(if (tblsearch "LAYER" LayerName) T nil))
+;;; 改图层名
+;;; (rename-layer oldname newname)
+(defun rename-layer (oldname newname)
+	(if (exist-layer? oldname) (command "_.rename" "LAYER" oldname newname) nil)
+	(command))
+;;; 图层合并
+;;; (Layer-Merge A B)
+(defun layer-merge (A B)
+	(command "laymrg" "N" A "" "N" B "Y"))
+;;; change-layer-name 改图层名
+;;; (change-layer-name test-pattern replace-pattern newname)
+;;; (setq newer (replace layername newname pattern))
+(defun change-layer-name (test-pattern replace-pattern newname / layerlist layername newer)
+	(setvar "clayer" "0")
+	(setq layerlist (table "Layer" 2))
+	(foreach layername layerlist
+		(if (and (test layername test-pattern) (null (= layername "0"))) ; 如果图名匹配
+			(progn
+				(setq newer (replace layername newname replace-pattern)) ; 新图名
+				(if (tblsearch "LAYER" newer) 
+					(layer-merge layername newer) ; 新图名图层存在，合并图层
+					(rename-layer layername newer))) ; 新图名图层不存在，重命名
+			nil)
+	)
+)
+;;; 添加 -LEON
+; (replace "asd" "^(?!(.*)-LEON$)" "$1+2")
+(defun C:LEON+ ()
+	(change-layer-name "^(?!(.*)-LEON$)" "^(.*)$" "$1-LEON")
+	(print))
+;;; 删除 -LEON
+(defun C:LEON- ()
+	(change-layer-name "(.*)-leon$" "(.*)-leon$" "$1")
+	(print))
 ;;; -----------------------------------------------------------------------
 
 
@@ -638,6 +675,13 @@
       (setq ll (cons each ll))
       t))
   return ll)
+;;; (table  table-name DXF)   返回符号表某属性的列表
+;;; table-name 可取"LAYER"、"LTYPE"、"VIEW"、"STYLE"、"BLOCK"、"UCS"、"APPID"、"DIMSTYLE" 和 "VPORT"
+;;; 例 (table "LAYER" 2) 返回所有图名的列表
+;;; (null D) 当最后一个条目后，返回T，否则返回nil
+(defun table (S dxf / D R) 
+	(while (setq D (tblnext S (null D)))
+		(setq R (cons (cdr (assoc dxf D)) R))))
 ;;; withclose 
 (defun withclose (mode value fun / orgvalue)
   (setq orgvalue (getvar mode))
@@ -669,9 +713,12 @@
 ;;; Execute 方法
 (defun execute (Str1 Pattern / nstr each l pos len str reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
-  (vlax-put-property reg "IgnoreCase" IgnoreCase)
-  (vlax-put-property reg "Global" Global)
-  (vlax-put-property reg "Pattern" Pattern)
+  (vlax-put-property reg 'IgnoreCase 1)
+  (vlax-put-property reg 'Global 1)
+  (vlax-put-property reg 'Pattern Pattern)
+  ;(vlax-put-property reg "IgnoreCase" IgnoreCase) 这个写法旧版CAD无法使用
+  ;(vlax-put-property reg "Global" Global)
+  ;(vlax-put-property reg "Pattern" Pattern)
   (setq nstr (vlax-invoke-method reg "Execute" Str1))
   (vlax-release-object reg)
   (vlax-for each 
@@ -685,9 +732,9 @@
 ;;; 生成只有匹配结果的列表
 (defun execute- (Str1 Pattern / nstr each l reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
-  (vlax-put-property reg "IgnoreCase" IgnoreCase)
-  (vlax-put-property reg "Global" Global)
-  (vlax-put-property reg "Pattern" Pattern)
+  (vlax-put-property reg 'IgnoreCase 1)
+  (vlax-put-property reg 'Global 1)
+  (vlax-put-property reg 'Pattern Pattern)
   (setq nstr (vlax-invoke-method reg "Execute" Str1))
   (vlax-release-object reg)
   (vlax-for each 
@@ -699,8 +746,8 @@
 ;;; (test string pattern)
 (defun test (Str1 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
-  (vlax-put-property reg "IgnoreCase" IgnoreCase)
-  (vlax-put-property reg "Pattern" Pattern)
+  (vlax-put-property reg 'IgnoreCase 1)
+  (vlax-put-property reg 'Pattern Pattern)
   (setq nstr (eq :vlax-true (vlax-invoke-method reg "Test" Str1)))
   (vlax-release-object reg)
   return nstr)
