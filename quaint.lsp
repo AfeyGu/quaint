@@ -1,45 +1,47 @@
-;;; ±ğÃû
-;;; Ñ¡Ôñ
+;;; åˆ«å
+;;; é€‰æ‹©
 (defun c:zzselect () (c:xselect))
 (defun c:xs () (c:xselect))
-;;; ÊÓ¿Ú
-(defun c:v0 () (ai_tiledvp 1 nil))  ;;; v0 v1 v2 v3 ¸Ä±äÊÓ¿ÚÊıÁ¿
+;;; è§†å£
+(defun c:v0 () (ai_tiledvp 1 nil))  ;;; v0 v1 v2 v3 æ”¹å˜è§†å£æ•°é‡
 (defun c:v1 () (command "-vports" "j"))
 (defun c:v2 () (ai_tiledvp 2 "_V"))
 (defun c:v3 () (command "-vports" "3" "V"))
-;;; ÊôĞÔ
+;;; å±æ€§
 (defun c:satt () (search-att))
 (defun c:gatt () (get-att))
-(defun c:22 () (setlayer0)) ;;; ÉèÖÃµ±Ç°Í¼²ãÎª0
-;;; ÎÄ±¾²Ù×÷
-(defun c:a1 () (align-textangle)) ;;; ÎÄ×ÖĞı×ªÖ¸¶¨½Ç¶È
-(defun c:wzad () (text-join*))  ;;; ÎÄ×ÖºÏ²¢
+(defun c:22 () (setlayer0)) ;;; è®¾ç½®å½“å‰å›¾å±‚ä¸º0
+;;; æ–‡æœ¬æ“ä½œ
+(defun c:a1 () (align-textangle)) ;;; æ–‡å­—æ—‹è½¬æŒ‡å®šè§’åº¦
+(defun c:wzad () (text-join*))  ;;; æ–‡å­—åˆå¹¶
 (defun c:aq () (text-add-app*))
 (defun c:fe () (text-copy*))
 (defun c:wzdj () (text-spacing))
-(defun c:ji () (calc-text)) ;;; ¼ÆËãtextÄÚÈİ
-(defun c:jjj() (withclose "osmode" 0 calc-steel-area*)) ;;; ¼ÆËãÅä½îÃæ»ı²¢¼ÇÂ¼
-(defun c:jj () (calc-steel-area))  ;;; ¼ÆËãÅä½îÃæ»ı
-(defun c:regex() (select-matched-text)) ;;; Í¨¹ıÕıÔòÑ¡ÔñÎÄ×Ö
+(defun c:wzbh () (continuous-identifier)) ;;; æ–‡å­—ç¼–å·ä¿®æ”¹
+(defun c:ji () (calc-text)) ;;; è®¡ç®—textå†…å®¹
+(defun c:jjj() (withclose "osmode" 0 calc-steel-area*)) ;;; è®¡ç®—é…ç­‹é¢ç§¯å¹¶è®°å½•
+(defun c:jj () (calc-steel-area))  ;;; è®¡ç®—é…ç­‹é¢ç§¯
+(defun c:regex() (select-matched-text)) ;;; é€šè¿‡æ­£åˆ™é€‰æ‹©æ–‡å­—
 (defun c:wzth() (replace-matched-text))
-(defun c:rws() (rewrite-steel*)) ;;; ÖØĞ´Ô­Î»±ê×¢¸Ö½îĞ´·¨
+(defun c:rws() (rewrite-steel*)) ;;; é‡å†™åŸä½æ ‡æ³¨é’¢ç­‹å†™æ³•
 (defun c:pop () (littlefilter)) ;;; Pop littler num
 (defun c:ppp() (littlefilter*)) ;;; Pop littler num plus
-;;; ¿é²Ù×÷
-(defun c:bb () (block-based-zero))  ;;; ÒÔ0Îª»ùµã´ò¿é
-(defun c:sbil () (search-block-inlayer*)) ;;; Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é
-(defun c:gb () (copy-to-block)) ;;; ¸´ÖÆÎª¿é
-(defun c:br () (random-named-block))  ;;; ¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
+;;; å—æ“ä½œ
+(defun c:bb () (block-based-zero))  ;;; ä»¥0ä¸ºåŸºç‚¹æ‰“å—
+(defun c:sbil () (search-block-inlayer*)) ;;; é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—
+(defun c:gb () (copy-to-block)) ;;; å¤åˆ¶ä¸ºå—
+(defun c:br () (random-named-block))  ;;; å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
 (defun c:bg () (command "REFSET" "R"))
 (defun c:bf () (command "REFSET" "A"))
 (defun c:rs () (command "REFCLOSE" "S"))
-;;; Í¼ĞÎ²Ù×÷
+;;; å›¾å½¢æ“ä½œ
 (defun c:kk () (breakatpoint)) ;;; breakatpoint
 (defun c:k () (command "_.break" pause "f"))
+(defun c:qe () (command "pedit" "M"))
 
-;;  ½»Ñ¡
-;;  ´ı¼ÓÈë¿Õ¼¯ÅĞ¶Ï
-;;  ½â¾öÑ¡ÔñÍê²»ÏÔÊ¾µÄÎÊÌâ
+;;  äº¤é€‰
+;;  å¾…åŠ å…¥ç©ºé›†åˆ¤æ–­
+;;  è§£å†³é€‰æ‹©å®Œä¸æ˜¾ç¤ºçš„é—®é¢˜
 (defun c:xselect (/ A B intersection)
   (setq A (ssget) B (ssget))
   (defun intersection (/ C i)
@@ -57,28 +59,28 @@
 
 
 ;;; -----------------------------------------------------------------------
-;;; Ñ¡ÔñÍ¼²ãÉÏËùÓĞ¿é  
-;;; ĞèÒªÓÃlist, Ê¹ÓÃ`²»ĞĞ
+;;; é€‰æ‹©å›¾å±‚ä¸Šæ‰€æœ‰å—  
+;;; éœ€è¦ç”¨list, ä½¿ç”¨`ä¸è¡Œ
 (defun search-block-inlayer (layer)
   (sssetfirst nil (ssget "X" (list (cons 0 "INSERT") (cons 8 layer)))))
 (defun search-block-inlayer* ()
   (princ "\n Select layer:")
   (search-block-inlayer (get-obj-att (car (entsel)) 8)))
-;;; ¸´ÖÆÎª¿é
+;;; å¤åˆ¶ä¸ºå—
 (defun copy-to-block (/ A)
   (setq A (ssget))
-  (command "copybase" (getpoint "Ö¸¶¨»ùµã£º") A "")
+  (command "copybase" (getpoint "æŒ‡å®šåŸºç‚¹ï¼š") A "")
   (command "pasteblock")
   (princ))
-;;; ¶¨ÒåÎªËæ»úÃüÃûµÄ¿é
+;;; å®šä¹‰ä¸ºéšæœºå‘½åçš„å—
 (defun random-named-block (/ A p)
   (setq A (ssget))
-  (setq p (getpoint "Ö¸¶¨»ùµã£º"))
+  (setq p (getpoint "æŒ‡å®šåŸºç‚¹ï¼š"))
   (command "copybase" p A "")
   (command "pasteblock" p)
   (command "erase" A "")
   (princ))
-;;; ÒÔ0Îª»ùµã´ò¿é
+;;; ä»¥0ä¸ºåŸºç‚¹æ‰“å—
 (defun block-based-zero (/ A p)
   (setq A (ssget))
   (setq p (list 0 0 0))
@@ -92,10 +94,10 @@
 
 
 
-;;; ÎÄ×Ö²Ù×÷ --------------------------------------------------------------
-;;; ½«ÎÄ×ÖĞı×ªÖÁËùÑ¡½Ç¶È
-;;; 50-½Ç¶È£¬51-ÇãĞ±½Ç¶È
-;;; TODO£ºÑ¡Ôñ¶ÔÏó
+;;; æ–‡å­—æ“ä½œ --------------------------------------------------------------
+;;; å°†æ–‡å­—æ—‹è½¬è‡³æ‰€é€‰è§’åº¦
+;;; 50-è§’åº¦ï¼Œ51-å€¾æ–œè§’åº¦
+;;; TODOï¼šé€‰æ‹©å¯¹è±¡
 (defun align-textangle (/ A B i change-angle)
   (defun change-angle (new-rad ent-data)
     (entmod (subst
@@ -103,15 +105,19 @@
         (assoc 50 ent-data)
         ent-data)))
   (setq A (ssget))
-  (setq B (getangle "Ö¸¶¨µÚÒ»µã:"))
+  (setq A (ssset->sslist A))
+  (setq A (sslist-filter A 0 "TEXT"))
+  (setq A (sslist->ssset A))
+  (setq B (getangle "æŒ‡å®šç¬¬ä¸€ç‚¹:"))
   (setq i 0)
   (repeat (sslength A)
     (progn
       (change-angle B (entget (ssname A i)))
       (setq i (1+ i)))))
 
-;;; ¼ÆËã±í´ïÊ½Öµ
+;;; è®¡ç®—è¡¨è¾¾å¼å€¼
 ;;; add setting of accuracy 
+;;; æ•´æ•°å¿…é¡»ä»‹äº 2147483647 å’Œ -2147483648 ä¹‹é—´
 (defun calc-text (/ A i e text text0 text1 cutstr)
   (setq A (ssget))
   (defun cutstr (str)
@@ -127,10 +133,10 @@
       (set-obj-att
         (ssname A i)
         1
-        (strcat e text1 "=" (rtos (cal text) 2 2)))
+        (strcat e text1 "=" (rtos (cal (strcat "0.0+" text)) 2 2)))
       (setq i (1+ i)))))
 
-;;; ÎÄ×ÖºÏ²¢
+;;; æ–‡å­—åˆå¹¶
 (defun text-join (obj1 obj2)
   (set-obj-att
     obj1
@@ -141,13 +147,13 @@
     (t (command "erase" obj2 ""))))
 (defun text-join* (/ obj1 obj2)
   (text-join (car (entsel)) (car (entsel))))
-;;; ÎÄ×Ö¼ÓÀ¨ºÅ
+;;; æ–‡å­—åŠ æ‹¬å·
 (defun text-add-app(obj)
   (set-obj-att obj 1 (strcat "(" (get-obj-att obj 1) ")")))
 (defun text-add-app* ()
   (text-add-app (car (entsel)))
   (text-add-app*))
-;;;  ÎÄ×Ö¸´ÖÆ
+;;;  æ–‡å­—å¤åˆ¶
 (defun text-copy (t1 t2)
   (set-obj-att t2 1 (get-obj-att t1 1)))
 (defun text-copy* (/ tester es)
@@ -156,17 +162,17 @@
     (if (= "TEXT" (get-obj-att es 0))
       es
       (progn 
-        (princ "ÖØĞÂÑ¡È¡£º")
+        (princ "é‡æ–°é€‰å–ï¼š")
         (tester)
         )))
   (text-copy (tester) (tester))
   (princ))
-;;; ÎÄ×ÖµÈĞĞ¼ä¾à 
-;;; ×éÂë11Îª0 Ôò¸Ä10 £¬·ñÔò¸Ä11
+;;; æ–‡å­—ç­‰è¡Œé—´è· 
+;;; ç»„ç 11ä¸º0 åˆ™æ”¹10 ï¼Œå¦åˆ™æ”¹11
 (defun text-spacing (/ d sslist h y each) 
   (setq sslist (ssset->sslist (ssget)))
   (setq sslist (sslist-filter sslist 0 "TEXT"))
-  (setq d (if (setq d (getreal "ÊäÈëĞĞ¼ä¾à<defeat=0.4>£º")) d 0.4))
+  (setq d (if (setq d (getreal "è¾“å…¥è¡Œé—´è·<defeat=0.4>ï¼š")) d 0.4))
   (setq sslist (vl-sort 
                  sslist
                  '(lambda (ent1 ent2) 
@@ -183,45 +189,68 @@
             (cons y (cons 0 nil))))
     (setq y (- y h)))
   (princ))
+;;; ç¼–å·è¿ç»­
+;;; ä¿®æ”¹"1.xxxx"æ ¼å¼çš„æ–‡å­—çš„åºå·
+(defun continuous-identifier (/ ss str id)
+  (setq ss (ssset->sslist (ssget (list '(0 . "TEXT"))))) ; é€‰æ‹©æ–‡æœ¬
+  (setq ss (sslist-filter* ss 1 
+            (lambda (str) (test str "^\\d+\\."))
+           )
+  ) ; è¿‡æ»¤æ‰æ²¡ç¼–å·çš„
+  (setq ss (vl-sort
+            ss
+            '(lambda (ent1 ent2)
+              (>
+               (car (cdr (get-obj-att ent1 10)))
+               (car (cdr (get-obj-att ent2 10)))
+              )))) ; æŒ‰Yåæ ‡æ’åº
+  (setq id 1)
+  (foreach each ss
+    (setq str (get-obj-att each 1))
+    (setq str (replace str (strcat (rtos id) ".") "^\\d+\\."))
+    (set-obj-att each 1 str)
+    (setq id (+ 1 id)))
+  (princ)
+)
 ;;; Pop littler num
-;;; todo: ¼ÓÈë·¶Î§Ñ¡ÊıµÄ¹¦ÄÜ
+;;; todo: åŠ å…¥èŒƒå›´é€‰æ•°çš„åŠŸèƒ½
 (defun littlefilter (/ A ll num)
   (setq ll (ssset->sslist (ssget)))
   (setq num (getreal "\nNum:"))
   (setq A (ssadd))
   (setq ll (sslist-filter ll 0 "TEXT"))
-  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; ¹ıÂËµô·ÇÊı×Ö
+  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; è¿‡æ»¤æ‰éæ•°å­—
   (foreach each ll
     (if (<= (atof (get-obj-att each 1)) num) (ssadd each A) t))
   (sssetfirst nil A)
   (princ))
 ;;; Pop littler num plus
-;;; todo Ôö¼ÓÑ¡ÔñÎÄ×Ö×÷Îª¹ıÂË¶ÔÏóµÄÑ¡Ïî
-;;; TODO ¸üºÏÀíµÄÑÕÉ«
+;;; todo å¢åŠ é€‰æ‹©æ–‡å­—ä½œä¸ºè¿‡æ»¤å¯¹è±¡çš„é€‰é¡¹
+;;; TODO æ›´åˆç†çš„é¢œè‰²
 (setq pop-color-mode 0)
 (defun littlefilter*(/ getlist int A ll c color)
   (setq ll (ssset->sslist (ssget)))
   (setq ll (sslist-filter ll 0 "TEXT"))
-  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; ¹ıÂËµô·ÇÊı×Ö
-  (defun color (c / cc c2) ; ¸ÄÑÕÉ«
+  (setq ll (sslist-filter* ll 1 (lambda (x) (test x "^(-?\\d+)(\\.\\d+)?$")))) ; è¿‡æ»¤æ‰éæ•°å­—
+  (defun color (c / cc c2) ; æ”¹é¢œè‰²
     (cond 
-      ((= pop-color-mode 0) ; Ê¹ÓÃÕæ²ÊÉ«
+      ((= pop-color-mode 0) ; ä½¿ç”¨çœŸå½©è‰²
         (setq cc (hsl->rgb (* 250.0 (/ c 1.0 (length int))) 1 0.5))
         (setq c2 (strcat (rtos (car cc)) "," (rtos (cadr cc)) "," (rtos (caddr cc))))
         (command ".chprop" A "" "c" "t" c2 ""))
       (t (command ".CHPROP" A "" "c" (+ c 1) "")) ; 0-9
       ))
   (defun getlist()
-    (setq int (getreal "\nNum:")) ; ÊµÊıÒ²ĞĞ
+    (setq int (getreal "\nNum:")) ; å®æ•°ä¹Ÿè¡Œ
     (cond ((nil? int) nil)
       (t (cons int (getlist)))))
   ;(setq int (reverse (getlist)))
-  (setq int (vl-sort (getlist) '>)) ; ´Ó´óµ½Ğ¡ÅÅĞò
-  (setq A (ssadd)) ; ´óÓÚ×î´óµÄºìÉ«
+  (setq int (vl-sort (getlist) '>)) ; ä»å¤§åˆ°å°æ’åº
+  (setq A (ssadd)) ; å¤§äºæœ€å¤§çš„çº¢è‰²
   (foreach each ll
       (if (> (atof (get-obj-att each 1)) (car int)) (ssadd each A) t))
   (color 0)
-  (setq c 1) ; Ê£ÏÂµÄÒÀ´Î¸ÄÑÕÉ«
+  (setq c 1) ; å‰©ä¸‹çš„ä¾æ¬¡æ”¹é¢œè‰²
   (foreach eachint int
     (setq A (ssadd))
     (foreach each ll
@@ -230,7 +259,7 @@
       (color c))
     (setq c (+ 1 c)))
   (princ))
-;;; ËÑË÷ÏàÍ¬ÄÚÈİ×Ö·û
+;;; æœç´¢ç›¸åŒå†…å®¹å­—ç¬¦
 (defun c:sszf(/ A s)
   (princ "Input:\n")
   (setq s (get-obj-att (ssname (ssget) 0) 1))
@@ -240,42 +269,42 @@
   (sssetfirst nil (sslist->ssset A))
   (princ))
 ;;; regex
-;;; ²éÕÒ·ûºÏÌõ¼şÄÚÈİµÄÎÄ×Ö
-;;; todo Ìí¼ÓÄÚÖÃÆ¥ÅäÄ£Ê½(ĞÂµÄÆ¥Åäº¯Êı)
-(setq select-matched-text-Pattern "") ; Ä¬ÈÏÖµ
+;;; æŸ¥æ‰¾ç¬¦åˆæ¡ä»¶å†…å®¹çš„æ–‡å­—
+;;; todo æ·»åŠ å†…ç½®åŒ¹é…æ¨¡å¼(æ–°çš„åŒ¹é…å‡½æ•°)
+(setq select-matched-text-Pattern "") ; é»˜è®¤å€¼
 (defun select-matched-text(/ Pattern A)
   (setq A (ssset->sslist (ssget)))
-  (setq A (sslist-filter A 0 "TEXT")) ; Éú³ÉÎÄ×ÖµÄÑ¡ÔñÁĞ±í
+  (setq A (sslist-filter A 0 "TEXT")) ; ç”Ÿæˆæ–‡å­—çš„é€‰æ‹©åˆ—è¡¨
   (princ "Input Pattern <")
   (princ select-matched-text-Pattern)
   (princ ">:\n")
   (setq Pattern (read-line))
   (cond ((= "" Pattern) (setq Pattern select-matched-text-Pattern))
-    (t (setq select-matched-text-Pattern Pattern))) ; ÉèÖÃÄ¬ÈÏÖµ
+    (t (setq select-matched-text-Pattern Pattern))) ; è®¾ç½®é»˜è®¤å€¼
   (defun selecter(A)
     (cond ((nil? A) nil)
       ((test (get-obj-att (car A) 1) Pattern) (cons (car A) (selecter (cdr A))))
       (t (selecter (cdr A)))))
   (setq A (selecter A))
   (sssetfirst nil (sslist->ssset A))
-  (princ "ÕÒµ½ ")
+  (princ "æ‰¾åˆ° ")
   (length A))
 ;;; wzth
-;;; Ìæ»»Æ¥ÅäÄÚÈİµÄÎÄ±¾
+;;; æ›¿æ¢åŒ¹é…å†…å®¹çš„æ–‡æœ¬
 (defun replace-matched-text(/ Pattern sslist str)
   (setq sslist (ssset->sslist (ssget)))
-  (setq sslist (sslist-filter sslist 0 "TEXT")) ; Éú³ÉÎÄ×ÖµÄÑ¡ÔñÁĞ±í
+  (setq sslist (sslist-filter sslist 0 "TEXT")) ; ç”Ÿæˆæ–‡å­—çš„é€‰æ‹©åˆ—è¡¨
   (princ "Input Pattern:\n")
   (setq Pattern (read-line))
   (princ "Input Replace string:")
   (setq str (read-line))
   (foreach each sslist 
     (set-obj-att each 1 (replace (get-obj-att each 1) str Pattern)))
-  (princ "ÒÑ²Ù×÷ ")
+  (princ "å·²æ“ä½œ ")
   (princ (length sslist))
   (princ)
 )
-;;; ¼ÆËãÅä½îÃæ»ı
+;;; è®¡ç®—é…ç­‹é¢ç§¯
 (defun calc-steel-area (/ sslist)
   (setq sslist (ssset->sslist (ssget)))
   (setq sslist (sslist-filter sslist 0 "TEXT"))
@@ -286,14 +315,14 @@
             "$1+$2" "([0-9]+%%132[0-9]+)/([0-9]+%%132[0-9]+)" 
             "" "[0-9]+/[0-9]+" 
             "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
-;;; Á½¸öÅä½îÃæ»ıÖ®±È £¨0.3£©
+;;; ä¸¤ä¸ªé…ç­‹é¢ç§¯ä¹‹æ¯” ï¼ˆ0.3ï¼‰
 (defun c:lli (/ tester es calcer)
   (defun tester () 
     (setq es (car (entsel)))
     (if (= "TEXT" (get-obj-att es 0))
       es
       (progn 
-        (princ "ÖØĞÂÑ¡È¡£º")
+        (princ "é‡æ–°é€‰å–ï¼š")
         (tester)
         )))
   (defun calcer (txt)
@@ -305,15 +334,15 @@
             "" "[0-9]+/[0-9]+" 
             "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
   (/ (calcer (tester)) (calcer (tester))))
-;;; ×ª»¯ÎªÄ³Ò»Ö±¾¶
-;;; todo: ×ªÎª¼¸ÖÖÖ±¾¶µÄ×îÓÅ½â
+;;; è½¬åŒ–ä¸ºæŸä¸€ç›´å¾„
+;;; todo: è½¬ä¸ºå‡ ç§ç›´å¾„çš„æœ€ä¼˜è§£
 (defun c:zh (/ phi tester es calcer)
   (defun tester () 
     (setq es (car (entsel)))
     (if (= "TEXT" (get-obj-att es 0))
       es
       (progn 
-        (princ "ÖØĞÂÑ¡È¡£º")
+        (princ "é‡æ–°é€‰å–ï¼š")
         (tester))))
   (defun calcer (txt)
     (cal 
@@ -325,7 +354,7 @@
             "$1*$2*$2*0.78539815" "([0-9]+)%%132([0-9]+)"))))
   (setq phi (getint "Num:"))
   (/ (calcer (tester)) (* 3.1415926 phi phi 0.25)))
-;;; ¼ÆËãÅä½îÃæ»ı²¢¼ÇÂ¼
+;;; è®¡ç®—é…ç­‹é¢ç§¯å¹¶è®°å½•
 (defun calc-steel-area* (/ sslist area calcarea calc) 
   (setvar "cmdecho" 0)
   (setq sslist (ssset->sslist (ssget)))
@@ -342,16 +371,16 @@
         )
       )
     ))
-  (defun calcarea (str / areaa)  ;¼ÆËãÃæ»ı
+  (defun calcarea (str / areaa)  ;è®¡ç®—é¢ç§¯
     (setq areaa "")
     (cond 
-      ((not (test str "^[\(0-9]+%%132[0-9 %;/+\(\)]+$")) nil) ; G2%%13216 Ö®ÀàµÄ
+      ((not (test str "^[\(0-9]+%%132[0-9 %;/+\(\)]+$")) nil) ; G2%%13216 ä¹‹ç±»çš„
       ((and 
           (test str "([\(0-9]+%%132[0-9\)]+[/ +]*)+")
-          (test str ";")) ; ´ø;µÄ±í´ïÊ½
+          (test str ";")) ; å¸¦;çš„è¡¨è¾¾å¼
         (foreach each (execute- str "([\(0-9]+%%132[0-9\)]+[/ +]*)+")
           (setq areaa (strcat areaa (rtos (calc each)) "  "))))
-      ((test str "([0-9]+%%132[0-9]+[/ +]*)+") ; µ¥¸öÅä½îµÄ±í´ïÊ½
+      ((test str "([0-9]+%%132[0-9]+[/ +]*)+") ; å•ä¸ªé…ç­‹çš„è¡¨è¾¾å¼
         (rtos (calc str)))
       (t nil)))
   (foreach each sslist 
@@ -369,13 +398,13 @@
       t))
   (setvar "cmdecho" 0)
   (princ))
-;;; µ÷ÕûÔ­Î»±ê×¢Ğ´·¨
+;;; è°ƒæ•´åŸä½æ ‡æ³¨å†™æ³•
 (defun rewrite-steel*(/ sslist)
   (defun rewrite (str)
     (if (test str "^([ ]?[0-9]{1,2}%%132[0-9]{1,2}[ ]?[+/])+[ ]?[0-9]{1,2}%%132[0-9]{1,2}$") 
       (rewrite-steel str)
       str))
-  (princ "Ñ¡Ôñ¶ÔÏó£º")
+  (princ "é€‰æ‹©å¯¹è±¡ï¼š")
   (setq sslist (ssset->sslist (ssget)))
   (setq sslist (sslist-filter sslist 0 "TEXT"))
   (foreach each sslist
@@ -384,7 +413,7 @@
 ;;; rewrite steel
 ;;; (rewrite-steel "2%%13216+2%%13220 / 2%%13220") -> "4%%13220+2%%13216 4/2"
 (defun rewrite-steel(strr / prefix prefixl suffix link linkadd steellist addeach)
-  (setq str strr) ; ÊÇ·ñ±ØÒª
+  (setq str strr) ; æ˜¯å¦å¿…è¦
   (defun linkadd (alist str)
     (cond ((= nil (cdr alist)) (itoa (cal (car alist))))
       (t (strcat (itoa (cal (car alist))) str (linkadd (cdr alist) str)))))
@@ -399,7 +428,7 @@
       ((nil? alist) 0)
       (t (+ (atoi (car alist)) (addeach (cdr alist))))))
   (foreach each steellist 
-    (setq str strr) ; ÊÇ·ñ±ØÒª
+    (setq str strr) ; æ˜¯å¦å¿…è¦
     (if (test str (strcat "%%132" each))
       (setq prefixl (cons 
       (strcat 
@@ -415,13 +444,13 @@
 
 
 
-;;; Í¼²ã²Ù×÷ ---------------------------------------------------------------
-;;; ÉèÖÃµ±Ç°Í¼²ãÎª0
+;;; å›¾å±‚æ“ä½œ ---------------------------------------------------------------
+;;; è®¾ç½®å½“å‰å›¾å±‚ä¸º0
 (defun setlayer0 ()
   (setvar "clayer" "0")
   ;(command "-layer" "s" "0" "")
   (princ))
-;;; ¹Ø±ÕÆäËû
+;;; å…³é—­å…¶ä»–
 (Defun C:toffotherlayer (/ SS CNT LAY LAYLST VAL)
   (setvar "cmdecho" 0)
   (if (not (setq SS (ssget "i")))
@@ -443,11 +472,11 @@
       (command "")))
   (setvar "cmdecho" 1)
   (princ))
-;;; Í¼²ãÈ«¿ª
+;;; å›¾å±‚å…¨å¼€
 (DEFUN C:openalllayer()
   (COMMAND "-LAYER" "T" "*" "ON" "*" "")
   (princ))
-;;; ¹Ø±ÕÍ¼²ã
+;;; å…³é—­å›¾å±‚
 (Defun C:tofflayer (/ SS CNT LAY LAYLST VAL CLAYER)
   (setvar "cmdecho" 0)
   (setq CLAYER (getvar "CLAYER"))
@@ -476,7 +505,7 @@
 
 
 ;;; -----------------------------------------------------------------------
-;;; Í¼ĞÎ
+;;; å›¾å½¢
 ;;; Break with First option at 1 point
 (defun breakatpoint ()
   (command "_.break" pause "_first" pause "@"))
@@ -485,8 +514,8 @@
 
 
 ;;; -----------------------------------------------------------------------
-;;; ¸Ä±äÑÕÉ«
-(defun C:7 (/ gp co) ;ÉèÖÃÎªºìÉ«
+;;; æ”¹å˜é¢œè‰²
+(defun C:7 (/ gp co) ;è®¾ç½®ä¸ºçº¢è‰²
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
   (if (/= gp nil) (command ".change" gp "" "p" "c" 1 ""))
@@ -494,24 +523,24 @@
 (defun C:8 (/ gp co)
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
-  (setq co (if (= "" (setq co (getstring "ÊäÈëÑÕÉ«£º"))) "ByLayer" co))
+  (setq co (if (= "" (setq co (getstring "è¾“å…¥é¢œè‰²ï¼š"))) "ByLayer" co))
   (if (/= gp nil) (command ".change" gp "" "p" "c" co ""))
   (princ))
-(defun C:88 (/ gp co) ;ÉèÖÃÎª»ÒÉ«
+(defun C:88 (/ gp co) ;è®¾ç½®ä¸ºç°è‰²
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
   (if (/= gp nil) (command ".change" gp "" "p" "c" 8 ""))
   (princ))
-(defun C:9 (/ gp co) ;ÉèÖÃÎª30
+(defun C:9 (/ gp co) ;è®¾ç½®ä¸º30
   ;(setvar "cmdecho" 0)
   (setq gp (ssget))
   (if (/= gp nil) (command ".change" gp "" "p" "c" 30 ""))
   (princ))
-;;; ²éÑ¯ËùÑ¡¶ÔÏóÊôĞÔ
+;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å±æ€§
 (defun search-att ()
   (princ (entget (ssname (ssget) 0)))
   (princ))
-;;; ²éÑ¯ËùÑ¡¶ÔÏó¶ÔÓ¦ÊôĞÔ  
+;;; æŸ¥è¯¢æ‰€é€‰å¯¹è±¡å¯¹åº”å±æ€§  
 (defun get-att (/ num)
   (setq num (getint "\nDXF:"))
   (princ (get-obj-att (ssname (ssget) 0) num))
@@ -526,7 +555,7 @@
 
 
 ;;; -----------------------------------------------------------------------
-;;; º¯Êı¿â
+;;; å‡½æ•°åº“
 ;;; nil?
 (defun nil? (a) (= nil a))
 (defun != (/ a b) (not (eq a b))) ; not eq
@@ -553,7 +582,7 @@
       ((<= 0.5 x (/ 2.0 3)) (+ p (* 6 (- (/ 2.0 3) x) (- q p))))  ; 0.5<=x<=1/3
       (t p)))
   (cond ((= 0 s) (list (round (* 255 l) 0) (round (* 255 l) 0) (round (* 255 l) 0)))
-    (t ; ÕâÀï²»ÄÜÓÃelse£¬»á·µ»Ønil£¬ÉÏÍ¬
+    (t ; è¿™é‡Œä¸èƒ½ç”¨elseï¼Œä¼šè¿”å›nilï¼Œä¸ŠåŒ
       (list 
         (round (* 255 (colorc (tc (+ hk (/ 1.0 3))))) 0)
         (round (* 255 (colorc (tc hk))) 0)
@@ -583,7 +612,7 @@
   (car (cons ll nil)))
 ;;; sslist->ssset
 ;;; (sssetfirst nil (sslist->ssset (ssset->sslist (ssget))))
-(defun sslist->ssset(sslist / ssset)
+(defun sslist->ssset (sslist / ssset)
   (setq ssset (ssadd))
   (defun ssiter (sslist)
     (cond ((nil? sslist) nil)
@@ -592,8 +621,8 @@
   (ssiter sslist)
   return ssset)
 ;;; sslist filter
-;;; ¸ù¾İÄ³Ò»×éÂë¹ıÂËssslist£¬·µ»Ø·ûºÏÌõ¼şµÄÄÚÈİ
-;;; e.g. (sslist-filter sslist 0 "TEXT")  ¹ıÂË²»ÊÇ"TEXT"ÀàĞÍµÄ¶ÔÏó
+;;; æ ¹æ®æŸä¸€ç»„ç è¿‡æ»¤ssslistï¼Œè¿”å›ç¬¦åˆæ¡ä»¶çš„å†…å®¹
+;;; e.g. (sslist-filter sslist 0 "TEXT")  è¿‡æ»¤ä¸æ˜¯"TEXT"ç±»å‹çš„å¯¹è±¡
 (defun sslist-filter (sslist dxf value / ll) 
   (setq ll nil)
   (foreach each sslist 
@@ -604,7 +633,7 @@
 ;;; sslist filter plus
 (defun sslist-filter* (sslist dxf filter / ll)
   (setq ll nil)
-  (foreach each sslist ; Ó¦¸Ã¿ÉÒÔ¸ÄÓÃmapcar
+  (foreach each sslist ; åº”è¯¥å¯ä»¥æ”¹ç”¨mapcar
     (if (filter (get-obj-att each dxf))
       (setq ll (cons each ll))
       t))
@@ -616,12 +645,13 @@
   (fun)
   (setvar mode orgvalue)
   (princ))
-;;; regex ÕıÔò --------------------------------------------------------------
-;;; ×¢£º\d ÒªĞ´³É\\d (Ğ´º¯ÊıÊ±±ØÒª£¬cadÖĞÊ¹ÓÃËÆºõ²»ÓÃ)
+;;; regex æ­£åˆ™ --------------------------------------------------------------
+;;; æ³¨ï¼š\d è¦å†™æˆ\\d (å†™å‡½æ•°æ—¶å¿…è¦ï¼Œcadä¸­ä½¿ç”¨ä¼¼ä¹ä¸ç”¨)
 (setq Global 1)
 (setq IgnoreCase 1)
-;;; replace ·½·¨
-;;; ÁĞ³öÆ¥ÅäÏî Î»ÖÃ£¬³¤¶È£¬ÄÚÈİ
+;;; replace æ–¹æ³•
+;;; åˆ—å‡ºåŒ¹é…é¡¹ ä½ç½®ï¼Œé•¿åº¦ï¼Œå†…å®¹
+;;; (replace "1.2.1." "a." "^1.") -> "a.2.1."
 (defun replace (Str1 Str2 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
@@ -630,13 +660,13 @@
   (setq nstr (vlax-invoke-method reg "Replace" Str1 Str2))
   (vlax-release-object reg)
   return nstr)
-;;; replace* ·½·¨
+;;; replace* æ–¹æ³•
 (defun replace* (str alist) 
   (cond 
     ((nil? alist) str)
     ((nil? (cdr alist)) nil)
     (t (replace* (replace str (car alist) (cadr alist)) (cddr alist)))))
-;;; Execute ·½·¨
+;;; Execute æ–¹æ³•
 (defun execute (Str1 Pattern / nstr each l pos len str reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
@@ -651,8 +681,8 @@
                   str (vlax-get-property each "value"))
             (setq l (cons (list pos len str) l)))
   (reverse l))
-;;; execute- ·½·¨
-;;; Éú³ÉÖ»ÓĞÆ¥Åä½á¹ûµÄÁĞ±í
+;;; execute- æ–¹æ³•
+;;; ç”Ÿæˆåªæœ‰åŒ¹é…ç»“æœçš„åˆ—è¡¨
 (defun execute- (Str1 Pattern / nstr each l reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
   (vlax-put-property reg "IgnoreCase" IgnoreCase)
@@ -665,7 +695,7 @@
             (setq str (vlax-get-property each "value"))
             (setq l (cons str l)))
   (reverse l))
-;;; test ·½·¨
+;;; test æ–¹æ³•
 ;;; (test string pattern)
 (defun test (Str1 Pattern / nstr reg) 
   (setq reg (vlax-create-object "Vbscript.RegExp"))
@@ -681,5 +711,5 @@
 (setvar "cmdecho" 0)
 (command "cal" nil)
 (setvar "cmdecho" 1)
-(princ "\nQuaint ÒÑ¼ÓÔØ¡£\n")
+(princ "\nQuaint å·²åŠ è½½ã€‚\n")
 (princ)
